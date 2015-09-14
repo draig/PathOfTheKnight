@@ -1,9 +1,14 @@
 require.config({
     paths: {
         jquery: 'lib/jquery',
+        jqueryUI: 'lib/jquery-ui',
         underscore: 'lib/underscore',
         backbone: 'lib/backbone',
         text: 'lib/text'
+    },
+
+    shim: {
+        jqueryUI: ['jquery']
     }
 
 });

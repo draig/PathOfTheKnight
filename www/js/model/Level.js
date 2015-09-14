@@ -1,7 +1,8 @@
 define([
     'underscore',
-    'backbone'
-], function(_, Backbone){
+    'backbone',
+    'model/Cell'
+], function(_, Backbone, Cell){
 
     var Level = Backbone.Model.extend({
         defaults: {
