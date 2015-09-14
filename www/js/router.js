@@ -4,13 +4,17 @@ define([
     'underscore',
     'backbone',
     'view/MenuView',
-    'view/SettingsView'
-], function($, _, Backbone, MenuView, SettingsView){
+    'view/SettingsView',
+    'view/GameView',
+    'model/Level',
+    'model/ChessTable'
+], function($, _, Backbone, MenuView, SettingsView, GameView, Level, ChessTable){
 
     var Router = Backbone.Router.extend({
         routes: {
             'settings': 'settings',
             'menu': 'menu',
+            'game': 'game',
             '': 'defaultPage'
         },
 
@@ -18,6 +22,7 @@ define([
             //_.bindAll(this);
             this.menuView = new MenuView();
             this.settingsView = new SettingsView();
+            this.gameView = new GameView();
         },
 
         settings: function() {
@@ -26,6 +31,13 @@ define([
 
         menu: function() {
             $('body').html(this.menuView.render().$el);
+        },
+
+        game: function() {
+            this.gameView.setLevel( new Level ({
+                chessTable: new ChessTable()
+            }));
+            $('body').html(this.gameView.render().$el);
         },
 
         defaultPage: function() {

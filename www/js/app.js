@@ -13,6 +13,11 @@ define([
     // Global event aggregator
     App.eventAggregator = _.extend({}, Backbone.Events);
 
+    App.config = {
+        width: $('body').width(),
+        height: $('body').height()
+    };
+
     // View.close() event for garbage collection
     Backbone.View.prototype.close = function() {
         this.remove();

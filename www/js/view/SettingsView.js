@@ -15,12 +15,16 @@ define([
         className: 'kp-menu',
 
         events: {
-            "click .kp-back": 'back'
+            'click .kp-back': 'back'
         },
 
         render: function () {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
-            this.$el.html(this.template({}));
+            if(!this._rendered){
+                this.$el.html(this.template({}));
+                this._rendered = true;
+            }
+            this.delegateEvents();
             return this;
         },
 
