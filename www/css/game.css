@@ -16,3 +16,27 @@ td.active{
 td.disable{
     background-color: black;
 }
+
+.dialog {
+    display: inline-block;
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+}
+
+.res-info *{
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 44px;
+}
+
+.res-complete {
+    font-size: 28px;
+}
+
+.restart-btn {
+    float: left;
+}
+
+.menu-btn {
+    float: right;
+}
