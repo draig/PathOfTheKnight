@@ -10,7 +10,7 @@ body {
 .header {
     background: url("http://www.latenightrabbit.com/design/chessKnight/chessKnightWallpaper-1200x800.png") no-repeat center center;
     background-size: cover;
-    height: 600px;
+    height: 89%;
     text-align: center;
 
 
@@ -20,7 +20,7 @@ body {
 .header .text
 {
     position: relative;
-    top:100px;
+    top:12%;
 
 }
 
@@ -30,6 +30,7 @@ body {
     font-size: 80px;
     margin-top: 0;
     margin-bottom: 80px;
+    font-weight: bold;
 
     position: relative;
     text-transform: uppercase;
@@ -42,7 +43,13 @@ body {
     margin-top: 0;
     font-size:20px;
     text-transform: uppercase;
+
 }
+
+
+
+
+
 
 .btn {
     color: #fff;
@@ -50,11 +57,11 @@ body {
     padding: 30px 60px;
     text-decoration: none;
     font-size:20px;
-    transition: background .5s;
+    transition: background 5s;
 }
 .list {
     background: #000;
-    height: 80px;
+    height: 11%;
     width: 100%;
 }
 
@@ -66,18 +73,20 @@ body {
 }
 
 .list ul li {
-    color: #fff;
+
     display: inline-block;
-    height: 80px;
+
     line-height: 80px;
     list-style: none;
     padding: 0 50px;
-   font-size:20px;
+    font-size:20px;
     transition: background .5s;
 }
 .list ul li a
 {
-    text-decoration: none;
+ line-height: 80px;
+padding:0,80px;
+  text-decoration: none;
 }
 #Left
 {
@@ -91,4 +100,48 @@ body {
     background: #117bff;
     cursor: pointer;
     transition: background .5s;
+}
+@media only screen and (max-width: 800px) {
+    .header h1
+    {
+        font-size: 65px;
+    }
+    .list ul li {
+        font-size: 20px;
+        padding: 0 35px;
+    }
+
+}
+@media only  screen and (max-width: 500px) {
+
+    .header h1
+    {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .list ul li
+    {
+        font-size:14px;
+        padding: 0 15px;
+    }
+    .list ul li a
+    {
+        line-height: 65px;
+    }
+
+}
+@media only  screen and (max-width: 300px) {
+    .header p
+    {
+        display: none;
+    }
+    .list ul li
+    {
+        font-size:11px;
+        padding: 0 10px;
+    }
+    .list ul li a
+    {
+        line-height: 40px;
+    }
 }
