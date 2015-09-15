@@ -7,11 +7,12 @@
 }
 
 .knight{
-    position: absolute;
-    width: 100px;
-    top: 0;
-    left: 0;
-    height: 100px;
-    border-radius: 300px;
+}
+
+td.active{
+    box-shadow: inset 0px 0px 90px rgba(0,0,0,0.9);
+}
+
+td.disable{
     background-color: black;
 }

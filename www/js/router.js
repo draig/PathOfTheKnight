@@ -7,8 +7,9 @@ define([
     'view/SettingsView',
     'view/GameView',
     'model/Level',
-    'model/ChessTable'
-], function($, _, Backbone, MenuView, SettingsView, GameView, Level, ChessTable){
+    'model/ChessTable',
+    'model/Cell'
+], function($, _, Backbone, MenuView, SettingsView, GameView, Level, ChessTable, Cell){
 
     var Router = Backbone.Router.extend({
         routes: {
@@ -35,7 +36,8 @@ define([
 
         game: function() {
             this.gameView.setLevel( new Level ({
-                chessTable: new ChessTable()
+                chessTable: new ChessTable(),
+                horse: new Cell()
             }));
             $('body').html(this.gameView.render().$el);
         },

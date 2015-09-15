@@ -14,11 +14,6 @@ define([
 
         className: 'kp-menu',
 
-        events: {
-            "click #to-settings": "toSettings",
-            "click #to-game": "toGame"
-        },
-
         render: function () {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
             if(!this._rendered){
@@ -27,16 +22,7 @@ define([
             }
             this.delegateEvents();
             return this;
-        },
-
-        toSettings: function() {
-            Backbone.history.navigate('settings', {trigger: true});
-        },
-
-        toGame: function() {
-            Backbone.history.navigate('game', {trigger: true});
         }
-
     });
 
     return HeaderView;
