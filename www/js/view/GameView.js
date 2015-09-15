@@ -4,8 +4,9 @@ define([
     'backbone',
     'app',
     'jqueryUI',
+    'widget/ScoreDialog',
     'text!../../template/game.html'
-], function($, _, Backbone, app, jqueryUI, MenuTpl){
+], function($, _, Backbone, app, jqueryUI, ScoreDialog, MenuTpl){
 
     var HeaderView = Backbone.View.extend({
 
@@ -21,9 +22,15 @@ define([
         horse: null,
         table: null,
         chessTable: null,
+        score: 1,
 
         events: {
             "click #to-settings": "toSettings"
+        },
+
+        initialize: function() {
+            //_.bindAll(this);
+            this.scoreDialog = new ScoreDialog();
         },
 
         render: function () {
@@ -90,6 +97,8 @@ define([
             this.$table.find('td').click(function() {
                 if($(this).hasClass('active')){
 
+                    scope.score++;
+
                     var prev = scope.chessTable[scope.horse.get('y')][scope.horse.get('x')];
                     prev.data('steps', prev.data('steps') - 1);
 
@@ -99,24 +108,34 @@ define([
 
                     scope.horse.set('x', $(this).data('x')).set('y', $(this).data('y'));
                     $knight.offset($(this).offset());
-                    scope.setActiveCells(scope.horse)
+                    if(scope.setActiveCells(scope.horse) !== 0){
+
+                        scope.scoreDialog.render({
+                            score: scope.score,
+                            level: scope.level,
+                            complete: scope.$table.find('td').not('.disable').length === 1
+                        }).$el.show();
+                    }
                 }
             });
 
-            this.setActiveCells(this.horse);
+            if(this.setActiveCells(this.horse) === 0){
+                ScoreDialog.render().show();
+            }
 
         },
         
         setActiveCells: function(cell) {
             this.$table.find('td.active').removeClass('active');
+            var availabelCells = 0;
             if(cell.get('x') - 2 >= 0){
                 if(cell.get('y') - 1 >= 0) {
                     !this.chessTable[cell.get('y') - 1][cell.get('x') - 2].hasClass('disable') &&
-                    this.chessTable[cell.get('y') - 1][cell.get('x') - 2].addClass('active');
+                    this.chessTable[cell.get('y') - 1][cell.get('x') - 2].addClass('active') && ++availabelCells;
                 }
                 if(cell.get('y') + 1 < this.table.get('sizeY')) {
                     !this.chessTable[cell.get('y') + 1 ][cell.get('x') - 2].hasClass('disable') &&
-                    this.chessTable[cell.get('y') + 1 ][cell.get('x') - 2].addClass('active');
+                    this.chessTable[cell.get('y') + 1 ][cell.get('x') - 2].addClass('active') && ++availabelCells;
                 }
             }
 
@@ -127,32 +146,34 @@ define([
                 }
                 if(cell.get('y') + 2 < this.table.get('sizeY')) {
                     !this.chessTable[cell.get('y') + 2][cell.get('x') - 1].hasClass('disable') &&
-                    this.chessTable[cell.get('y') + 2][cell.get('x') - 1].addClass('active');
+                    this.chessTable[cell.get('y') + 2][cell.get('x') - 1].addClass('active') && ++availabelCells;
                 }
             }
 
             if(cell.get('x') + 2 < this.table.get('sizeX')){
                 if(cell.get('y') - 1 >= 0) {
                     !this.chessTable[cell.get('y') - 1][cell.get('x') + 2].hasClass('disable') &&
-                    this.chessTable[cell.get('y') - 1][cell.get('x') + 2].addClass('active');
+                    this.chessTable[cell.get('y') - 1][cell.get('x') + 2].addClass('active') && ++availabelCells;
                 }
 
                 if(cell.get('y') + 1 < this.table.get('sizeY')) {
                     !this.chessTable[cell.get('y') + 1][cell.get('x') + 2].hasClass('disable') &&
-                    this.chessTable[cell.get('y') + 1][cell.get('x') + 2].addClass('active');
+                    this.chessTable[cell.get('y') + 1][cell.get('x') + 2].addClass('active') && ++availabelCells;
                 }
             }
 
             if (cell.get('x') + 1 < this.table.get('sizeX')) {
                 if(cell.get('y') - 2 >= 0) {
                     !this.chessTable[cell.get('y') - 2][cell.get('x') + 1].hasClass('disable') &&
-                    this.chessTable[cell.get('y') - 2][cell.get('x') + 1].addClass('active');
+                    this.chessTable[cell.get('y') - 2][cell.get('x') + 1].addClass('active') && ++availabelCells;
                 }
                 if(cell.get('y') + 2 < this.table.get('sizeY')) {
                     !this.chessTable[cell.get('y') + 2][cell.get('x') + 1].hasClass('disable') &&
-                    this.chessTable[cell.get('y') + 2][cell.get('x') + 1].addClass('active');
+                    this.chessTable[cell.get('y') + 2][cell.get('x') + 1].addClass('active') && ++availabelCells;
                 }
             }
+
+            return  availabelCells;
         }
 
     });
