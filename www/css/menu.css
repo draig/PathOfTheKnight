@@ -1,7 +1,9 @@
 html, body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
+
 body {
     font-family:sans-serif;
     font-weight: 100;
@@ -19,7 +21,7 @@ body {
 }
 .header .text
 {
-    position: relative;
+   position: relative;
     top:12%;
 
 }
@@ -31,8 +33,6 @@ body {
     margin-top: 0;
     margin-bottom: 80px;
     font-weight: bold;
-
-    position: relative;
     text-transform: uppercase;
 }
 .header p {
@@ -66,7 +66,7 @@ body {
 }
 
 .list ul {
-    height: 80px;
+    height: 10%;
     list-style: none;
     margin: 0 auto;
     padding: 0;
@@ -126,7 +126,7 @@ padding:0,80px;
     }
     .list ul li a
     {
-        line-height: 65px;
+        line-height: 58px;
     }
 
 }
@@ -142,6 +142,105 @@ padding:0,80px;
     }
     .list ul li a
     {
-        line-height: 40px;
+        line-height: 30px;
     }
+}
+
+
+.popup{
+    width:100%;
+    min-height:100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow:hidden;
+    position:fixed;
+    top:0px;
+}
+.popup-inside{
+    margin: 10px auto 0 70%;
+    height: 89%;
+    padding:0px;
+    background-color: #c52c46;
+    border-radius:5px;
+    box-shadow: 0px 0px 10px #000;
+
+}
+.popup-inside ul
+{
+
+    list-style: none;
+}
+.popup-inside ul li
+{
+
+    line-height:20px;
+}
+.onoffswitch {
+    position: relative; width: 130px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 22px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 29px; padding: 0; line-height: 29px;
+    font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+
+    padding-left: 10px;
+    background-color: #34A7C1; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+#music:after
+{
+    content: "Music:OFF";
+}
+#music:before
+{
+    content: "Music:ON";
+}
+#support:after
+{
+    content: "Support:OFF";
+}
+#support:before
+{
+    content: "Support:ON";
+}
+
+#sound:after
+{
+    content: "Sound:OFF";
+}
+#sound:before
+{
+    content: "Sound:ON";
+}
+
+#reset:after
+{
+    content: " Progress Deleted";
+}
+#reset:before
+{
+    content: "Reset Progress";
 }
