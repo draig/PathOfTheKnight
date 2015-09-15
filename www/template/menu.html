@@ -1,20 +1,109 @@
-<div class="header">
+<html>
+<head>
 
+    <link rel="stylesheet" href="/PathOfTheKnight/www/css/menu.css">
+    <script src="/PathOfTheKnight/www/js/lib/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            PopUpHide();
+        });
+
+        function PopUpShow(){
+            $(".popup").show();
+        }
+        //Функция скрытия PopUp
+        function PopUpHide(){
+            $(".popup").hide();
+        }
+    </script>
+</head>
+<body>
+<div class="header">
     <div class="text">
         <h1>Path of the Knight</h1>
         <p>Some tex that explain something interesting</p>
-        <a class="btn" href="#game">Start Game</a>
+        <a class="btn" id="to-game" href="#">Start Game</a>
     </div>
 </div>
 
 
 <nav class="list">
+
     <ul id="Left">
         <li><a href="#">Author</a></li>
         <li><a href="#">Info</a></li>
     </ul>
     <ul id="Right">
-        <li><a href="#settings">Settings</a></li>
+
+        <li id="to-settings"><a href="javascript:PopUpShow();">Settings</a></li>
         <li><a href="#">Records</a></li>
+
     </ul>
 </nav>
+
+<!-- Popup settings starts her-->
+
+
+
+<div class="popup">
+<div class="popup-inside">
+    <div class="kp-back"><a href="javascript:PopUpHide();">">< Back</a>
+        </div>
+
+    <span>Settings</span>
+
+    <nav>
+        <ul>
+
+            <li>
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
+                    <label class="onoffswitch-label" for="myonoffswitch3">
+                        <span class="onoffswitch-inner" id="music"></span>
+
+                    </label>
+                </div>
+
+            </li>
+            <li>
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch2" checked>
+                    <label class="onoffswitch-label" for="myonoffswitch2">
+                        <span class="onoffswitch-inner" id="sound"></span>
+
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch4" checked>
+                    <label class="onoffswitch-label" for="myonoffswitch4">
+                        <span class="onoffswitch-inner" id="support"></span>
+
+                    </label>
+                </div>
+            </li>
+
+            <li>
+
+
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                        <label class="onoffswitch-label" for="myonoffswitch">
+                            <span class="onoffswitch-inner" id="reset"></span>
+
+                        </label>
+
+
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+</div>
+</div>
+
+
+</body>
+</html>
