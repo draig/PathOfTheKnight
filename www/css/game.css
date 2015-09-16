@@ -6,6 +6,15 @@
     background-color: brown;
 }
 
+.chess-table{
+    float: left;
+}
+
+.game-btn-bar{
+    display: inline-block;
+    float: left;
+}
+
 .knight{
 }
 

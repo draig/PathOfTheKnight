@@ -15,7 +15,8 @@ define([
 
     App.config = {
         width: $('body').width(),
-        height: $('body').height()
+        height: $('body').height(),
+        orientation: $('body').width() > $('body').height() ? 'horizontal' : 'vertical'
     };
 
     // View.close() event for garbage collection

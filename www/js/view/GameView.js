@@ -14,8 +14,6 @@ define([
 
         chessTable: [],
 
-//        initialize: function () {},
-
         className: 'kp-game',
 
         level: null,
@@ -25,8 +23,11 @@ define([
         score: 1,
 
         events: {
-            "click #to-settings": "toSettings"
+            'click .reset': 'reset'
         },
+
+        //        initialize: function () {},
+
 
         initialize: function() {
             //_.bindAll(this);
@@ -71,6 +72,11 @@ define([
             }
         },
 
+        reset: function() {
+            this.setLevel(this.level);
+            this.render();
+        },
+
         _renderTable: function() {
             this.$table = this.$el.find('.chess-table').empty();
             if(this.chessTable){
@@ -86,7 +92,7 @@ define([
             var tableSize = app.config.width > app.config.height ? app.config.height : app.config.width;
             this.$table.height(tableSize).width(tableSize);
 
-            var $knight = $('<img src="img/knight.png" class="knight">');
+            var $knight = this.$el.find('.knight');
             $knight.height(tableSize/this.chessTable.length).width(tableSize/this.chessTable[0].length).appendTo(this.$el);
             setTimeout(function() {
                 $knight.offset(this.chessTable[this.horse.get('y')][this.horse.get('x')].offset());
@@ -108,8 +114,7 @@ define([
 
                     scope.horse.set('x', $(this).data('x')).set('y', $(this).data('y'));
                     $knight.offset($(this).offset());
-                    if(scope.setActiveCells(scope.horse) !== 0){
-
+                    if(scope.setActiveCells(scope.horse) === 0){
                         scope.scoreDialog.render({
                             score: scope.score,
                             level: scope.level,
