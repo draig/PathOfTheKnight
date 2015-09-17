@@ -52,7 +52,7 @@ define([
         setLevel: function(level) {
             if(level && level.get('chessTable')){
                 this._createTable(level.get('chessTable'));
-                this.horse = level.get('horse');
+                this.horse = jQuery.extend(true, {}, level.get('horse'));
                 this.level = level;
                 this.table = level.get('chessTable');
             }

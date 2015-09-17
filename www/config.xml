@@ -11,6 +11,8 @@
         A simple employee directory application
     </description>
 
+    <preference name="Orientation" value="portrait" />
+
     <author href="http://startappsoft.con" email="andrew.daskhevich@yandex.ru">
         Andrew Dashkevich
     </author>

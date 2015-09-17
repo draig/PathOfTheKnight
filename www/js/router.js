@@ -6,16 +6,18 @@ define([
     'view/MenuView',
     'view/SettingsView',
     'view/GameView',
+    'view/InfoView',
     'model/Level',
     'model/ChessTable',
     'model/Cell'
-], function($, _, Backbone, MenuView, SettingsView, GameView, Level, ChessTable, Cell){
+], function($, _, Backbone, MenuView, SettingsView, GameView, InfoView, Level, ChessTable, Cell){
 
     var Router = Backbone.Router.extend({
         routes: {
             'settings': 'settings',
             'menu': 'menu',
             'game': 'game',
+            'info': 'info',
             '': 'defaultPage'
         },
 
@@ -24,14 +26,15 @@ define([
             this.menuView = new MenuView();
             this.settingsView = new SettingsView();
             this.gameView = new GameView();
+            this.infoView = new InfoView();
         },
 
         settings: function() {
-            $('body').html(this.settingsView.render().$el);
+            $('.app').html(this.settingsView.render().$el);
         },
 
         menu: function() {
-            $('body').html(this.menuView.render().$el);
+            $('.app').html(this.menuView.render().$el);
         },
 
         game: function() {
@@ -39,12 +42,16 @@ define([
                 chessTable: new ChessTable(),
                 horse: new Cell()
             }));
-            $('body').html(this.gameView.render().$el);
+            $('.app').html(this.gameView.render().$el);
+        },
+
+        info: function() {
+            $('app').html(this.infoView.render().$el);
         },
 
         defaultPage: function() {
             //Backbone.history.navigate('course-board', {trigger: true});
-            $('body').html(this.menuView.render().$el);
+            $('.app').html(this.menuView.render().$el);
         }
     });
 
