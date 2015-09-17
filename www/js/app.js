@@ -1,12 +1,18 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-], function($, _, Backbone){
+    'backbone',
+    'util/Adaptive'
+], function($, _, Backbone, Adaptive){
     var App = {
         initialize: function() {
             // Pass in our Router module and call it's initialize function
             this.router.initialize();
+            Adaptive.addClass(App.config.width);
+        },
+
+        importCss: function() {
+            $('.app').addClass()
         }
     };
 
@@ -14,9 +20,9 @@ define([
     App.eventAggregator = _.extend({}, Backbone.Events);
 
     App.config = {
-        width: $('body').width(),
-        height: $('body').height(),
-        orientation: $('body').width() > $('body').height() ? 'horizontal' : 'vertical'
+        width: $('.app').width(),
+        height: $('.app').height(),
+        orientation: $('.app').width() > $('.app').height() ? 'horizontal' : 'vertical'
     };
 
     // View.close() event for garbage collection

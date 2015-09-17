@@ -46,7 +46,7 @@ define([
         },
 
         info: function() {
-            $('app').html(this.infoView.render().$el);
+            $('.app').html(this.infoView.render().$el);
         },
 
         defaultPage: function() {

@@ -24,12 +24,20 @@ define([
             if(!this._rendered){
                 this.$el.html(this.template({}));
 
-                $('body').append(this.$el);
+                $('.app').append(this.$el);
                 this._rendered = true;
             }
             this.$body = this.$el.find('.dialog').html(this.bodyTemplate(config || {}));
             this.delegateEvents();
             return this;
+        },
+
+        show: function() {
+            this.$el.slideDown( "slow" );
+        },
+
+        hide: function() {
+            this.$el.hide();
         }
     });
 

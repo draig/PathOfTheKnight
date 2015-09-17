@@ -27,6 +27,8 @@ require([
 
         app.router = new WebRouter();
 
+        app.initialize();
+
         Backbone.history.start({
             root: '/'
         });

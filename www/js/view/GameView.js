@@ -41,12 +41,10 @@ define([
                 this._rendered = true;
             }
             this._renderTable();
+            this.clearScore();
+            this.scoreDialog.hide();
             this.delegateEvents();
             return this;
-        },
-
-        toSettings: function() {
-            Backbone.history.navigate('settings', {trigger: true});
         },
         
         setLevel: function(level) {
@@ -103,7 +101,7 @@ define([
             this.$table.find('td').click(function() {
                 if($(this).hasClass('active')){
 
-                    scope.score++;
+                    scope.incrementScore();
 
                     var prev = scope.chessTable[scope.horse.get('y')][scope.horse.get('x')];
                     prev.data('steps', prev.data('steps') - 1);
@@ -119,7 +117,7 @@ define([
                             score: scope.score,
                             level: scope.level,
                             complete: scope.$table.find('td').not('.disable').length === 1
-                        }).$el.show();
+                        }).show();
                     }
                 }
             });
@@ -179,6 +177,16 @@ define([
             }
 
             return  availabelCells;
+        },
+
+        incrementScore: function() {
+            this.score++;
+            this.$el.find('.score').text(this.score);
+        },
+
+        clearScore: function() {
+            this.score = 1;
+            this.$el.find('.score').text(this.score);
         }
 
     });
