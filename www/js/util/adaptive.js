@@ -4,10 +4,9 @@ define([
     'backbone'
 ], function($, _, Backbone){
     var Adaptive = {
-        adaptiveClass: function(resolution) {
-            if(resolution < 400 && resolution >= 340){
-
-            }
+        addClass: function(resolution) {
+            resolution = resolution - (resolution % 10);
+            $('.app').addClass('app-resolution-' + resolution);
         }
     };
 
