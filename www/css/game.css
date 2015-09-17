@@ -8,13 +8,13 @@
 
 .game-btn-bar{
     width: 100%;
-    height: 190px;
+    height: 70px;
     position: relative;
 }
 
 .game-btn-bar img {
-    height: 150px;
-    padding: 20px;
+    height: 50px;
+    padding: 10px;
     top: 0;
     position: absolute;
 }
@@ -28,14 +28,14 @@
 }
 
 .game-btn-bar .game-state {
-    padding: 0 240px;
+    padding: 0 70px;
     height: 100%;
     text-align: center;
 }
 
 .game-btn-bar .game-state span{
-    font-size: 110px;
-    padding: 34px 0;
+    font-size: 40px;
+    padding: 13px 0;
     display: inline-block;
     font-family: sans-serif;
     font-weight: 100;
