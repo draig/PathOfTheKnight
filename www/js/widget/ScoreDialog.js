@@ -33,11 +33,13 @@ define([
         },
 
         show: function() {
-            this.$el.slideDown( "slow" );
+            this.$el.show();
+            this.$el.find('.dialog').slideDown(1000);
         },
 
         hide: function() {
             this.$el.hide();
+            this.$el.find('.dialog').hide();
         }
     });
 
