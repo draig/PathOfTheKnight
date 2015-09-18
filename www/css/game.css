@@ -85,3 +85,11 @@ td.disable{
 .menu-btn{
     float: right;
 }
+
+.scoreDialog .reset {
+    float: left;
+}
+
+.scoreDialog .menu {
+    float: right;
+}

@@ -19,3 +19,7 @@ body{
     background-color: rgba(0,0,0,0.5);
     text-align: center;
 }
+
+.overlay.transparent{
+    background-color: rgba(0,0,0,0);
+}

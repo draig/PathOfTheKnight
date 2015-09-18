@@ -14,6 +14,8 @@ define([
 
         className: 'overlay',
 
+        dlgClass: 'scoreDialog',
+
         /*
         * @complete
         * @score
@@ -23,7 +25,7 @@ define([
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
             if(!this._rendered){
                 this.$el.html(this.template({}));
-
+                this.$el.find('.dialog').addClass(this.dlgClass || '');
                 $('.app').append(this.$el);
                 this._rendered = true;
             }
@@ -33,8 +35,11 @@ define([
         },
 
         show: function() {
+            this.$el.addClass('transparent');
             this.$el.show();
-            this.$el.find('.dialog').slideDown(1000);
+            this.$el.find('.dialog').slideDown(1000, function() {
+                this.$el.removeClass('transparent');
+            }.bind(this));
         },
 
         hide: function() {

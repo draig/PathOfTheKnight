@@ -5,12 +5,13 @@ define([
     'app',
     'jqueryUI',
     'widget/ScoreDialog',
+    'widget/Timer',
     'text!../../template/game.html'
-], function($, _, Backbone, app, jqueryUI, ScoreDialog, MenuTpl){
+], function($, _, Backbone, app, jqueryUI, ScoreDialog, Timer, GameTpl){
 
     var HeaderView = Backbone.View.extend({
 
-        template: _.template(MenuTpl),
+        template: _.template(GameTpl),
 
         chessTable: [],
 
@@ -39,11 +40,15 @@ define([
             if(!this._rendered){
                 this.$el.html(this.template({}));
                 this._rendered = true;
+                this.timer = new Timer({
+                    el: this.$el.find('.game-time')
+                });
             }
             this._renderTable();
             this.clearScore();
             this.scoreDialog.hide();
             this.delegateEvents();
+            this.timer.start();
             return this;
         },
         
