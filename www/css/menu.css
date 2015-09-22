@@ -10,7 +10,7 @@ body {
 }
 
 .header {
-    background: url("http://www.latenightrabbit.com/design/chessKnight/chessKnightWallpaper-1200x800.png") no-repeat center center;
+    background: url("../img/bg.png") no-repeat center center;
     background-size: cover;
     height: 89%;
     text-align: center;

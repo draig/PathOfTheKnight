@@ -4,7 +4,8 @@ require.config({
         jqueryUI: 'lib/jquery-ui',
         underscore: 'lib/underscore',
         backbone: 'lib/backbone',
-        text: 'lib/text'
+        text: 'lib/text',
+        i18n: 'lib/i18n'
     },
 
     shim: {

@@ -6,8 +6,8 @@ define([
 
     var Timer = Backbone.View.extend({
 
-
-        startTime: '0.0',
+        time: 0,
+        startStr: '0:00',
 
         render: function (config) {
 
@@ -15,26 +15,29 @@ define([
 
 
         start: function() {
-            this.startTime = new Date();
             this.timerId = setInterval(function() {
-                var currentTime = new Date();
-                this.time = new Date(currentTime - this.startTime);
-                var time = (this.time.getMinutes() === 0 ? '' : this.time.getMinutes() + ':') + this.time.getSeconds()
-                    + '.' +  this.time.getMilliseconds() % 10;
-                this.$el.text(time);
-            }.bind(this), 100)
+                this.time++;
+                var minutes = Math.floor(this.time/60),
+                    seconds = this.time % 60;
+
+                var timeStr = ( minutes + ':') + (seconds < 10 ? '0' : '') + seconds;
+                this.$el.text(timeStr);
+            }.bind(this), 1000)
         },
 
         pause: function() {
-            this.pauseTime = new Date();
             clearInterval(this.timerId);
+            this.timerId = null;
         },
 
+
         stop: function(){
+            var final = this.time;
+            this.time = 0;
             clearInterval(this.timerId);
-            this.pauseTime = null;
-            this.startTime = null;
-            this.$el.text(this.startTime);
+            this.timerId = null;
+            this.$el.text(this.startStr);
+            return final;
         }
 
     });

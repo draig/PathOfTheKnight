@@ -7,9 +7,14 @@
 }
 
 .game-btn-bar{
-    width: 100%;
+    position: absolute;
+    bottom: 0;
     height: 70px;
-    position: relative;
+    margin: 0 10px;
+    background-color: brown;
+    border-radius: 16px;
+    left: 0;
+    right: 0;
 }
 
 .game-btn-bar img {
@@ -44,6 +49,8 @@
 .game-btn-bar .game-state .game-time {
     float: right;
     padding-right: 15px;
+    width: 120px;
+    text-align: right;
 }
 
 .game-btn-bar .game-state .score {
@@ -67,6 +74,12 @@ td.disable{
     width: 100%;
     max-width: 500px;
     background-color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
 }
 
 .res-info *{
@@ -86,10 +99,19 @@ td.disable{
     float: right;
 }
 
-.scoreDialog .reset {
+.scoreDialog .res-btn-bar{
+    display: inline-block;
+    width: 100%;
+}
+
+.scoreDialog .res-btn-bar img {
+    height: 50px;
+    padding: 10px;
+}
+.scoreDialog .res-btn-bar .reset {
     float: left;
 }
 
-.scoreDialog .menu {
+.scoreDialog .res-btn-bar .menu {
     float: right;
 }
