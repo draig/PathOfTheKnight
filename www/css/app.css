@@ -19,7 +19,55 @@ body{
     background-color: rgba(0,0,0,0.5);
     text-align: center;
 }
+.app-resolution-240px  .header h1 {
+    font-size:40px;
+    line-height:30px;
+}
+.app-resolution-250px.header h1,.app-resolution-260px .header h1,.app-resolution-270px .header h1,.app-resolution-280px .header h1
+{
+    font-size: 43px;
+    line-height:33px;
+}
+.app-resolution-290px .header h1, .app-resolution-300px .header h1
+{
+    font-size:50px;
+    line-height: 45px;
+}
 
-.overlay.transparent{
-    background-color: rgba(0,0,0,0);
+.app-resolution-240px .header p ,.app-resolution-250px .header p,.app-resolution-260px .header p,.app-resolution-270px .header p,.app-resolution-280px .header p,.app-resolution-290px .header p,.app-resolution-280px .header p,.app-resolution-300px .header p
+{
+    display: none;
+}
+.app-resolution-240px .header .btn,.app-resolution-250px .header .btn ,.app-resolution-260px .header .btn,.app-resolution-270px .header .btn,.app-resolution-280px .header .btn,
+
+{
+    font-size: 15px;
+
+}
+.app-resolution-290px .header .btn,.app-resolution-300px .header .btn
+{
+    font-size:18px;
+
+}
+
+
+.app-resolution-240px.list ul li ,.app-resolution-250px.list ul li,.app-resolution-260px   .list ul li,.app-resolution-270px   .list ul li
+{
+    font-size:12px;
+    padding: 0 10px;
+}
+
+.app-resolution-280px   .list ul li,.app-resolution-290px .list ul li,.app-resolution-300px .list ul li
+{
+    font-size:13px;
+    padding:0 13px;
+
+}
+.app-resolution-240px .list ul li a ,.app-resolution-250px .list ul li a,.app-resolution-260px .list ul li a,.app-resolution-270px .list ul li a
+{
+    line-height: 30px;
+}
+.app-resolution-280px .list ul li a,.app-resolution-290px .list ul li a,.app-resolution-300px .list ul li a
+{
+    line-height: 44px;
 }
