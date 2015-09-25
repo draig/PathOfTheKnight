@@ -10,14 +10,10 @@ body {
 }
 
 .header {
-    background: url("../img/bg.png") no-repeat center center;
+    background: url("../img/menu-bg.png") no-repeat center top;
     background-size: cover;
     height: 89%;
     text-align: center;
-
-
-
-
 }
 .header .text
 {
@@ -46,7 +42,9 @@ body {
 
 }
 
-
+.app {
+    background: url("../img/bk-color.png") repeat;
+}
 
 
 

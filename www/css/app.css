@@ -78,3 +78,8 @@ body{
 {
     line-height: 44px;
 }
+
+.page-title {
+    height: 100px;
+    background: url('../img/wood-texture.png');
+}

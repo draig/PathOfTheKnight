@@ -6,10 +6,11 @@ define([
     'view/SettingsView',
     'view/GameView',
     'view/InfoView',
+    'view/LevelView',
     'model/Level',
     'model/ChessTable',
     'model/Cell'
-], function($, _, Backbone, MenuView, SettingsView, GameView, InfoView, Level, ChessTable, Cell){
+], function($, _, Backbone, MenuView, SettingsView, GameView, InfoView, LevelView, Level, ChessTable, Cell){
 
     var Router = Backbone.Router.extend({
         routes: {
@@ -17,6 +18,7 @@ define([
             'menu': 'menu',
             'game': 'game',
             'info': 'info',
+            'level': 'level',
             '': 'defaultPage'
         },
 
@@ -26,6 +28,7 @@ define([
             this.settingsView = new SettingsView();
             this.gameView = new GameView();
             this.infoView = new InfoView();
+            this.levelView = new LevelView();
         },
 
         settings: function() {
@@ -46,6 +49,10 @@ define([
 
         info: function() {
             $('.app').html(this.infoView.render().$el);
+        },
+
+        level: function() {
+            $('.app').html(this.levelView.render().$el);
         },
 
         defaultPage: function() {
