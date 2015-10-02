@@ -1,8 +1,9 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-], function($, _, Backbone){
+    'backbone',
+    'service/GameService'
+], function($, _, Backbone, gameService){
 
     var GameEngine = Backbone.Model.extend({
 
@@ -35,7 +36,7 @@ define([
         render: function () {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
             this._renderTable();
-            this.setActiveCells(this.get('horse'))
+            this.setActiveCells(this.get('horse'));
             this._clearScore();
             return this;
         },
@@ -193,7 +194,7 @@ define([
                 var complete = this.$table.find('td').not('.disable').length === 1;
                 this.trigger('gameOver', this.get('score'), complete);
                 if(complete){
-                    this.trigger('unlockStage', this.get('level').get('stageId'));
+                    gameService.unlockNextStage(this.get('level').get('stageId'));
                 }
             }
         },

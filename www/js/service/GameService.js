@@ -1,16 +1,26 @@
 define(['app'], function(app){
-    var LocalStorageStore = function(successCallback, errorCallback) {
+    var GameService = {
 
-        this.unlockStage = function(stageId) {
+        unlockNextStage: function(stageId) {
+            var nextStage = this.nextStage(stageId);
+            if(nextStage){
+                app.localStorage.update('stages', {
+                    enable: true
+                }, {
+                    id: nextStage.id
+                });
+            }
+        },
 
-        };
-
-        this.nextStage = function(stageId) {
+        nextStage: function(stageId) {
             var stage = app.localStorage.get('stages', {id: Number(stageId)})[0];
-            
-        };
+            return app.localStorage.get('stages', {
+                levelId: stage.levelId,
+                number: stage.number
+            })[0];
+        }
 
     };
 
-    return LocalStorageStore;
+    return GameService;
 });
