@@ -6,10 +6,10 @@ define([
 
     var Level = Backbone.Model.extend({
         defaults: {
-            name: '',
             bestTime: null,
             horse: null,
-            chessTable: null
+            chessTable: null,
+            stageId: null
         }
     });
 

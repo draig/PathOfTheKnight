@@ -10,9 +10,7 @@
     position: absolute;
     bottom: 0;
     height: 70px;
-    margin: 0 10px;
-    background-color: brown;
-    border-radius: 16px;
+    color: #FFEA82;
     left: 0;
     right: 0;
 }
@@ -65,15 +63,16 @@ td.active{
     box-shadow: inset 0px 0px 90px rgba(0,0,0,0.9);
 }
 
-td.disable{
-    background-color: black;
+td.disable {
+    background-color: transparent;
 }
 
 .dialog{
     display: inline-block;
     width: 100%;
     max-width: 500px;
-    background-color: #fff;
+    background-color: rgba(0,0,0,0.4);
+    color: #FFEA82;
     position: absolute;
     left: 0;
     right: 0;

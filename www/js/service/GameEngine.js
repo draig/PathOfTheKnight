@@ -192,6 +192,9 @@ define([
             if(availableCells === 0){
                 var complete = this.$table.find('td').not('.disable').length === 1;
                 this.trigger('gameOver', this.get('score'), complete);
+                if(complete){
+                    this.trigger('unlockStage', this.get('level').get('stageId'));
+                }
             }
         },
 

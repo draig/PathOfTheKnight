@@ -2,22 +2,26 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'util/Adaptive'
-], function($, _, Backbone, Adaptive){
+    'util/Adaptive',
+    'storage/LocalStorage'
+], function($, _, Backbone, Adaptive, LocalStorage){
     var App = {
         initialize: function() {
             // Pass in our Router module and call it's initialize function
             this.router.initialize();
             Adaptive.addClass(App.config.width);
-        },
-
-        importCss: function() {
-            $('.app').addClass()
         }
     };
 
     // Global event aggregator
     App.eventAggregator = _.extend({}, Backbone.Events);
+
+    //App.audio = new Audio('audio/way_back_home.mp3');
+    //App.audio.play();
+
+    App.localStorage = new LocalStorage();
+
+    console.log(App.localStorage.get('settings'));
 
     App.config = {
         width: $('.app').width(),

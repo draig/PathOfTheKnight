@@ -1,0 +1,23 @@
+.level {
+    width: 33%;
+    height: 100px;
+    display: block;
+    float: left;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.level img {
+    width: 70px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.level:first-child, .level:nth-child(3n + 1) {
+    padding-left: 0.5%;
+}

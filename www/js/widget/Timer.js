@@ -15,6 +15,9 @@ define([
 
 
         start: function() {
+            if(this.timerId){
+                clearInterval(this.timerId);
+            }
             this.timerId = setInterval(function() {
                 this.time++;
                 var minutes = Math.floor(this.time/60),

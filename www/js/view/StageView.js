@@ -3,23 +3,23 @@ define([
     'underscore',
     'backbone',
     'app',
-    'text!../../template/level.html'
+    'text!../../template/stage.html'
 ], function($, _, Backbone, app, LevelTpl){
 
-    var LevelView = Backbone.View.extend({
+    var StageView = Backbone.View.extend({
 
         template: _.template(LevelTpl),
 
-        className: 'kp-level',
+        className: 'kp-stage',
 
         events: {
             'click .kp-back': 'back'
         },
 
-        render: function () {
+        render: function (stages) {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
             if(!this._rendered){
-                this.$el.html(this.template({levels: app.localStorage.get('levels')}));
+                this.$el.html(this.template({stages: stages}));
                 this._rendered = true;
             }
             this.delegateEvents();
@@ -28,5 +28,5 @@ define([
 
     });
 
-    return LevelView;
+    return StageView;
 });

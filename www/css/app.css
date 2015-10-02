@@ -80,6 +80,9 @@ body{
 }
 
 .page-title {
-    height: 100px;
-    background: url('../img/wood-texture.png');
+    height: 75px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 45px;
+    color: #FFF59E;
 }

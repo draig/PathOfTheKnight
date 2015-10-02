@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Gothic';
+    src: URL('../font/Seagram tfb.ttf') format('truetype');
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -10,11 +15,10 @@ body {
 }
 
 .header {
-    background: url("../img/menu-bg.png") no-repeat center top;
-    background-size: cover;
     height: 89%;
     text-align: center;
 }
+
 .header .text
 {
    position: relative;
@@ -23,13 +27,12 @@ body {
 }
 
 .header h1 {
-    color: #0a0a0a;
-    line-height: 100px;
-    font-size: 80px;
-    margin-top: 0;
-    margin-bottom: 80px;
     font-weight: bold;
-    text-transform: uppercase;
+    font-size: 64px;
+    margin-top: 0;
+    margin-bottom: 60px;
+    color: #FFEA82;
+    font-family: "Gothic";
 }
 .header p {
     color: #0a0a0a;
@@ -46,17 +49,21 @@ body {
     background: url("../img/bk-color.png") repeat;
 }
 
-
-
-
 .btn {
-    color: #fff;
-    background: #000;
-    padding: 30px 60px;
+    border: 4px solid #FFEA82;
+    color: #FFEA82;
+    padding: 15px 35px;
     text-decoration: none;
-    font-size:20px;
-    transition: background 5s;
+    font-size: 40px;
+    text-transform: uppercase;
 }
+
+.btn:hover, .list ul li :hover{
+    background: rgba(255, 234, 130, 0.5);
+    cursor: pointer;
+    transition: background .5s;
+}
+
 .list {
     background: #000;
     height: 11%;
@@ -94,12 +101,8 @@ padding:0,80px;
 {
     float:right;
 }
-.btn:hover, .list ul li :hover{
-    background: #117bff;
-    cursor: pointer;
-    transition: background .5s;
-}
-@media only screen and (max-width: 800px) {
+
+/*@media only screen and (max-width: 800px) {
     .header h1
     {
         font-size: 65px;
@@ -142,7 +145,7 @@ padding:0,80px;
     {
         line-height: 30px;
     }
-}
+}*/
 
 
 .popup{
@@ -242,4 +245,24 @@ padding:0,80px;
 #reset:before
 {
     content: "Reset Progress";
+}
+
+.menu-btn {
+    position: absolute;
+}
+
+.menu-btn img{
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+}
+
+.menu-btn.settings-btn {
+    bottom: 0px;
+    right: 0px;
+}
+
+.menu-btn.info-btn {
+    bottom: 0px;
+    left: 0px;
 }

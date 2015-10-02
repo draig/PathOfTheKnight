@@ -2,7 +2,15 @@
     Уровень
 </div>
 <div class="levels">
-    <div class="level classic">
+    <% levels.forEach(function(level) { %>
+        <div class="level <%= level.cssClass %>">
+            <a href="#level/<%= level.id %>/stage">
+                <img src="img/<%= level.img %>">
+            </a>
+        </div>
+    <% }); %>
 
+    <div class="level lock">
+        <img src="img/level-lock-big.png">
     </div>
 </div>

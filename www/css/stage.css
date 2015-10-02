@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Agency FB';
+    src: URL('../font/Agency-FB.ttf') format('truetype');
+}
+
+.stage {
+    width: 33%;
+    height: 100px;
+    display: table;
+    float: left;
+    padding: 0;
+    margin: 0;
+    position: relative;
+
+}
+
+.stage .stage-img {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.stage .stage-img a{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    text-decoration: none;
+    font-size: 70px;
+    border: 3px solid #FFF59E;
+    color: #FFF59E;
+    border-radius: 5px;
+    font-family: 'Agency FB';
+    background-size: cover;
+}
+
+.stage .stage-img.disable a {
+    border: 3px solid #E4E4E4;
+    color: #E4E4E4;
+}
+
+.stage:first-child, .stage:nth-child(3n + 1) {
+    padding-left: 0.5%;
+}

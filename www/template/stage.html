@@ -1,0 +1,13 @@
+<div class="page-title">
+    Classic
+</div>
+<div class="stages">
+    <% stages.forEach(function(stage) { %>
+    <div class="stage">
+        <div class="stage-img <%= (stage.enable ? '' : 'disable') %>">
+            <a href="#game/<%= stage.id %>"><%= stage.number %></a>
+        </div>
+
+    </div>
+    <% }); %>
+</div>
