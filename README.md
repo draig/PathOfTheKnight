@@ -1,2 +1,0 @@
-# PathOfTheKnight
-PathOfTheKnight
