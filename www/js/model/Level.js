@@ -1,17 +1,28 @@
 define([
     'underscore',
     'backbone',
+    'util/WebSqlModel',
+    'util/WebSqlDb',
     'model/Cell'
-], function(_, Backbone, Cell){
-
-    var Level = Backbone.Model.extend({
+], function(_, Backbone, WebSqlModel, webSqlDb){
+    var Level = WebSqlModel.extend({
         defaults: {
-            bestTime: null,
-            horse: null,
-            chessTable: null,
-            stageId: null
+            id: 0,
+            name: '',
+            cssClass: '',
+            img: '',
+            enable: false
+        },
+
+        select: function(data, callback) {
+            webSqlDb.transaction(function(transaction){
+                transaction.executeSql(("SELECT * FROM level WHERE id=?"), [this.get('id')],
+                    function(transaction, results){
+                        callback(results);
+                    });
+            });
         }
     });
 
-    return Level;
+return Level;
 });
