@@ -195,7 +195,6 @@ define([], function(){
             }
         ];
 
-        this.insert('employees', employees);
         this.insert('settings', settings);
         this.insert('chessTables', chessTables);
         this.insert('horses', horses);

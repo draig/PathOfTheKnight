@@ -1,30 +1,58 @@
-define([], function(){
-    var WebSqlDb = function() {
+define([
+    'config/db/create',
+    'config/db/init'
+    ], function(create, init){
+        var WebSqlDb = function() {
 
-        this.config = {
-            name: 'pk',
-            v: '1.0',
-            description: 'Path of the Knight',
-            size: 2 * 1024 * 1024
+            this.config = {
+                name: 'pk',
+                v: '1.0',
+                description: 'Path of the Knight',
+                size: 2 * 1024 * 1024
+            };
+
+            this.db = openDatabase(this.config.name, this.config.v, this.config.description, this.config.size);
+
+            this._createTable = function() {
+                this.db.transaction(
+                    function(tx) {
+                        tx.executeSql(create.levels, null, function() {
+                            console.log('CREATE success');
+                        });
+                    },
+                    function(error) {
+                        alert("Transaction Error: " + error.message);
+                    }
+                );
+                console.log('_createTable finish');
+                return this;
+            };
+
+            this._initialize = function() {
+                this.db.transaction(
+                    function(tx) {
+                        init.levels.forEach(function(levelSql) {
+                            tx.executeSql(levelSql, null,
+                                function() {
+                                    console.log('INSERT success');
+                                },
+                                function(tx, error) {
+                                    alert('INSERT error: ' + error.message);
+                                });
+                        });
+                    },
+                    function(error) {
+                        alert("Transaction Error: " + error.message);
+                    }
+                );
+                console.log('_initialize finish');
+                return this;
+
+            };
+
+            this._createTable();
+            this._initialize();
         };
 
-        this.db = openDatabase(this.config.name, this.config.v, this.config.description, this.config.size);
-
-        this.createTable = function(tx, callback) {
-            var levelTable = "CREATE TABLE IF NOT EXISTS level ( " +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name VARCHAR(50), " +
-                "cssClass VARCHAR(50), " +
-                "img VARCHAR(50), " +
-                "managerId INTEGER, " +
-                "enable VARCHAR(50))";
-            tx.executeSql(levelTable, null, callback)
-        };
-
-        this.initialize = function() {
-            db.transaction();
-        }
-    };
-
-    return WebSqlDb.db;
-});
+        return new WebSqlDb();
+    });
