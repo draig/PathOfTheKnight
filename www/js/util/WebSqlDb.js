@@ -37,7 +37,7 @@ define([
                                     console.log('INSERT success');
                                 },
                                 function(tx, error) {
-                                    alert('INSERT error: ' + error.message);
+                                    console.log('INSERT error: ' + error.message);
                                 });
                         });
                     },

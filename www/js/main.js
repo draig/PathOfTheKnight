@@ -45,9 +45,7 @@ require([
                     return MyAPI.destroy(model, success, error);
                 case 'read' :
                     if (model.attributes[model.idAttribute]) {
-                        return MyAPI.find(model, success, error);
-                    } else {
-                        return MyAPI.findAll(model, success, error);
+                        return model.select(model.get('id'), success, error);
                     }
             }
         };
