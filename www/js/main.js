@@ -27,16 +27,13 @@ require.config({
 require([
         'backbone',
         'app',
-        'router',
-        'storage/websql-db'
+        'router'
     ],
-    function(Backbone, app, WebRouter, Storage) {
+    function(Backbone, app, WebRouter) {
 
         app.router = new WebRouter();
 
         app.initialize();
-
-        app.storage = new Storage();
 
         Backbone.history.start({
             root: '/'

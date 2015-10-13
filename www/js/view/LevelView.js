@@ -16,12 +16,10 @@ define([
             'click .kp-back': 'back'
         },
 
-        render: function () {
+        render: function (levels) {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
-            app.storage.getLevels(function(levels){
-                this.$el.html(this.template({levels: levels}));
-                this.delegateEvents();
-            }.bind(this));
+            this.$el.html(this.template({levels: levels}));
+            this.delegateEvents();
             return this;
         }
 

@@ -20,7 +20,7 @@ define([
             'menu': 'menu',
             'game/:stageId' : 'game',
             'info': 'info',
-            'level/:levelName/stage': 'stage',
+            'level/:levelId/stage': 'stage',
             'level': 'level',
             '': 'defaultPage'
         },
@@ -43,7 +43,7 @@ define([
         },
 
         game: function(stageId) {
-            app.storage.getStage(stageId, function(stageId, cells, horse) {
+            app.localStorage.getStage(stageId, function(stageId, cells, horse) {
                 this.gameView.setStage(new Level ({
                     chessTable: new ChessTable({
                         sizeY: cells.length,
@@ -61,14 +61,11 @@ define([
         },
 
         level: function() {
-            $('.app').html(this.levelView.render().$el);
+            $('.app').html(this.levelView.render(app.localStorage.getLevels()).$el);
         },
 
-        stage: function(levelName) {
-            app.storage.getStages(levelName, function(stages) {
-                $('.app').html(this.stageView.render(stages).$el);
-            }.bind(this));
-
+        stage: function(levelId) {
+            $('.app').html(this.stageView.render(app.localStorage.getStages(levelId)).$el);
         },
 
         defaultPage: function() {

@@ -21,8 +21,6 @@ define([
 
     App.localStorage = new LocalStorage();
 
-    console.log(App.localStorage.get('settings'));
-
     App.config = {
         width: $('.app').width(),
         height: $('.app').height(),
