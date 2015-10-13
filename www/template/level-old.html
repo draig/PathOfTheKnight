@@ -3,9 +3,8 @@
 </div>
 <div class="levels">
     <% levels.forEach(function(level) { %>
-    <a href="#level/<%= level.name %>/stage" class="level">
-        <img src="img/<%= level.img %>">
-        <span><%= level.name %></span>
+    <a href="#level/<%= level.id %>/stage" class="level btn">
+        <%= level.name %>
     </a>
     <% }); %>
 </div>

@@ -18,10 +18,7 @@ define([
 
         render: function (stages) {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
-            if(!this._rendered){
-                this.$el.html(this.template({stages: stages}));
-                this._rendered = true;
-            }
+            this.$el.html(this.template({stages: stages}));
             this.delegateEvents();
             return this;
         }

@@ -66,7 +66,7 @@ define([
             return this;
         },
         
-        setLevel: function(level) {
+        setStage: function(level) {
             this.gameEngine.set('level', level);
         },
 

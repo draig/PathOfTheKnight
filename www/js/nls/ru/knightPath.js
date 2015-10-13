@@ -1,6 +1,7 @@
 define({
     'root': {
-        'gameTitle': 'Path of the Knight',
-        '_start': 'Начать'
+        '_start': 'Начать',
+        '_levelClassic': 'Классика',
+        '_levelBeginner': 'Новичёк'
     }
 });

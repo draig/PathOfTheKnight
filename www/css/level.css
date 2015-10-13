@@ -1,23 +1,23 @@
 .level {
-    width: 33%;
-    height: 100px;
     display: block;
-    float: left;
-    padding: 0;
-    margin: 0;
+    margin: 5% 5%;
+    width: 40%;
     position: relative;
+    float: left;
+}
+.level img{
+    width: 100%;
 }
 
-.level img {
-    width: 70px;
+.level span{
     position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
+    bottom: 8;
     left: 0;
     right: 0;
-}
-
-.level:first-child, .level:nth-child(3n + 1) {
-    padding-left: 0.5%;
+    text-align: center;
+    color: #464C56;
+    font-size: 21px;
+    text-transform: uppercase;
+    font-family: Verdana;
+    font-weight: bold;
 }

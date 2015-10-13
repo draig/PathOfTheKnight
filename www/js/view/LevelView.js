@@ -18,11 +18,10 @@ define([
 
         render: function () {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
-            if(!this._rendered){
-                this.$el.html(this.template({levels: app.localStorage.get('levels')}));
-                this._rendered = true;
-            }
-            this.delegateEvents();
+            app.storage.getLevels(function(levels){
+                this.$el.html(this.template({levels: levels}));
+                this.delegateEvents();
+            }.bind(this));
             return this;
         }
 

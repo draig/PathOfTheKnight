@@ -4,9 +4,15 @@
 <div class="stages">
     <% stages.forEach(function(stage) { %>
     <div class="stage">
-        <div class="stage-img <%= (stage.enable ? '' : 'disable') %>">
+        <% if (stage.enable){ %>
+        <div class="stage-img">
             <a href="#game/<%= stage.id %>"><%= stage.number %></a>
         </div>
+        <% } else { %>
+        <div class="stage-img disable">
+            <a><%= stage.number %></a>
+        </div>
+        <% } %>
 
     </div>
     <% }); %>
