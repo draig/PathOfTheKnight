@@ -1,9 +1,11 @@
 .white-cell{
-    background-color: beige;
+    background: #DEBD8A url("../img/white-cell.png") no-repeat;
+    background-size: cover;
 }
 
 .black-cell{
-    background-color: brown;
+    background: #472411 url("../img/black-cell.png") no-repeat;
+    background-size: cover;
 }
 
 .game-btn-bar{
@@ -59,19 +61,26 @@
 .knight{
 }
 
-td.active{
-    box-shadow: inset 0px 0px 90px rgba(0,0,0,0.9);
+.black-cell.active{
+    background: #472411 url("../img/black-cell-active.png") no-repeat;
+    background-size: cover;
 }
 
-td.disable {
-    background-color: transparent;
+.white-cell.active{
+    background: #DEBD8A url("../img/white-cell-active.png") no-repeat;
+    background-size: cover;
+}
+
+.white-cell.disable, .black-cell.disable {
+    background: transparent none;
+
 }
 
 .dialog{
     display: inline-block;
     width: 100%;
     max-width: 500px;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.6);
     color: #FFEA82;
     position: absolute;
     left: 0;
@@ -98,19 +107,7 @@ td.disable {
     float: right;
 }
 
-.scoreDialog .res-btn-bar{
+.scoreDialog .next{
+    margin-top: 60px;
     display: inline-block;
-    width: 100%;
-}
-
-.scoreDialog .res-btn-bar img {
-    height: 50px;
-    padding: 10px;
-}
-.scoreDialog .res-btn-bar .reset {
-    float: left;
-}
-
-.scoreDialog .res-btn-bar .menu {
-    float: right;
 }

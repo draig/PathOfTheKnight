@@ -24,7 +24,7 @@ define([], function(){
             return entity;
         };
 
-        this.update = function(field, value, where) {
+        /*this.update = function(field, value, where) {
             var entity = JSON.parse(window.localStorage.getItem(field));
             var forUpdate = entity;
             if(where) {
@@ -44,7 +44,7 @@ define([], function(){
                 }.bind(this));
             }
             this.save(field, entity);
-        };
+        };*/
 
         this.insert = function(field, value) {
             if(window.localStorage.getItem(field) === null){
@@ -62,6 +62,10 @@ define([], function(){
             } else {
                 window.localStorage.setItem(field, JSON.stringify(value));
             }
+        };
+
+        this.update = function(field, value) {
+            window.localStorage.setItem(field, JSON.stringify(value));
         };
 
         this.getStagesByLevelId = function(levelId) {
@@ -83,7 +87,6 @@ define([], function(){
 
         this.getLevels = function() {
             var levels = JSON.parse(window.localStorage.getItem('levels'));
-
             for(var i = 0; i < levels.length; ++i) {
                 levels[i] = JSON.parse(levels[i]);
             }
@@ -116,6 +119,26 @@ define([], function(){
             callback(stage.id, cells, horse);
         };
 
+        this.getNextStage = function(stageId) {
+            var stages = JSON.parse(window.localStorage.getItem('stages')),
+                curStage = JSON.parse(stages[stageId]);
+
+            for(var i = 0; i < stages.length; ++i) {
+                if(stages[i].indexOf('"levelId":' + curStage.levelId) > -1 &&
+                    stages[i].indexOf('"number":' + (curStage.number + 1)) > -1){
+                        return JSON.parse(stages[i]);
+                }
+            }
+        };
+
+        this.enableStage = function(stageId) {
+            var stages = JSON.parse(window.localStorage.getItem('stages')),
+                curStage = JSON.parse(stages[stageId]);
+            curStage.enable = true;
+            stages[stageId] = JSON.stringify(curStage);
+            this.update('stages', stages);
+        };
+
         // Used to simulate async calls. This is done to provide a consistent interface with stores (like WebSqlStore)
         // that use async data access APIs
         var callLater = function(callback, data) {
@@ -140,7 +163,9 @@ define([], function(){
             {id: 1, levelId: 0, number: 2, horseId: 1, chessTableId: 1, enable: false},
             {id: 2, levelId: 0, number: 3, horseId: 2, chessTableId: 2, enable: false},
             {id: 3, levelId: 0, number: 4, horseId: 3, chessTableId: 3, enable: false},
-            {id: 4, levelId: 0, number: 5, horseId: 4, chessTableId: 4, enable: false}
+            {id: 4, levelId: 0, number: 5, horseId: 4, chessTableId: 4, enable: false},
+            {id: 5, levelId: 1, number: 1, horseId: 5, chessTableId: 5, enable: true},
+            {id: 6, levelId: 1, number: 2, horseId: 6, chessTableId: 6, enable: false}
         ];
 
         var chessTables = [
@@ -203,6 +228,22 @@ define([], function(){
                     [1, 1, 1, 1, 1, 1, 1, 1, 1],
                     [1, 1, 1, 1, 1, 1, 1, 1, 1]
                 ]
+            },
+            {
+                id: 5,
+                cells:  [
+                    [1, 0, 0],
+                    [0, 0, 1],
+                    [0, 0, 0]
+                ]
+            },
+            {
+                id: 6,
+                cells:  [
+                    [1, 0, 0],
+                    [0, 0, 0],
+                    [0, 1, 0]
+                ]
             }
         ];
 
@@ -211,14 +252,16 @@ define([], function(){
             { id: 1, x: 0, y: 0},
             { id: 2, x: 0, y: 0},
             { id: 3, x: 0, y: 0},
-            { id: 4, x: 0, y: 0}
+            { id: 4, x: 0, y: 0},
+            { id: 5, x: 0, y: 0},
+            { id: 6, x: 0, y: 0}
         ];
 
-        this.insert('settings', settings);
-        this.insert('chessTables', chessTables);
-        this.insert('horses', horses);
-        this.insert('stages', stages);
-        this.insert('levels', levels);
+        this.save('settings', settings);
+        this.save('chessTables', chessTables);
+        this.save('horses', horses);
+        this.save('stages', stages);
+        this.save('levels', levels);
 
         callLater(successCallback);
 

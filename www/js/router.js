@@ -9,10 +9,10 @@ define([
     'view/InfoView',
     'view/LevelView',
     'view/StageView',
-    'model/Level',
+    'model/Stage',
     'model/ChessTable',
     'model/Cell'
-], function($, _, Backbone, app, MenuView, SettingsView, GameView, InfoView, LevelView, StageView, Level, ChessTable, Cell){
+], function($, _, Backbone, app, MenuView, SettingsView, GameView, InfoView, LevelView, StageView, Stage, ChessTable, Cell){
 
     var Router = Backbone.Router.extend({
         routes: {
@@ -44,7 +44,8 @@ define([
 
         game: function(stageId) {
             app.localStorage.getStage(stageId, function(stageId, cells, horse) {
-                this.gameView.setStage(new Level ({
+                this.gameView.setStage(new Stage ({
+                    id: stageId,
                     chessTable: new ChessTable({
                         sizeY: cells.length,
                         sizeX: cells[0].length,

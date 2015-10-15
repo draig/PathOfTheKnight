@@ -13,7 +13,6 @@ define([
 
         },
 
-
         start: function() {
             if(this.timerId){
                 clearInterval(this.timerId);
@@ -31,6 +30,13 @@ define([
         pause: function() {
             clearInterval(this.timerId);
             this.timerId = null;
+            return this.time;
+        },
+
+        startOver: function() {
+            this.time = 0;
+            clearInterval(this.timerId);
+            this.start();
         },
 
 

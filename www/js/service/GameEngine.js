@@ -9,9 +9,8 @@ define([
 
         defaults: {
             chessTable: [],
-            level: null,
+            stage: null,
             horse: null,
-            score: 1,
             lock: false,
             height: 100,
             width: 100,
@@ -23,8 +22,9 @@ define([
         $knight: $('<img src="img/knight.png" class="knight" style="position: absolute">'),
 
         initialize: function() {
+            this.score = 1;
             this.$table = this.$el.find('table');
-            this.on('change:level', this._refreshOptions, this);
+            this.on('change:stage', this._refreshOptions, this);
             this.on('change:horse', function() {
                 this.setActiveCells(this.get('horse'))
             }, this);
@@ -42,9 +42,9 @@ define([
         },
 
         _refreshOptions: function() {
-            var level = this.get('level');
-            this._createTable(level.get('chessTable'));
-            this.set('horse', level.get('horse').clone());
+            var stage = this.get('stage');
+            this._createTable(stage.get('chessTable'));
+            this.set('horse', stage.get('horse').clone());
         },
 
         _createTable: function(table) {
@@ -56,6 +56,7 @@ define([
                     $td.data('steps', table.get('cells')[i][j]);
                     $td.data('x', j).data('y', i);
                     $td.addClass((i + j) % 2 === 0 ? 'white-cell' : 'black-cell');
+                    table.get('cells')[i][j] === 0 && $td.addClass('disable');
                     chessTable[i][j]= $td;
                 }
             }
@@ -85,15 +86,15 @@ define([
         },
 
         _resizeTable: function() {
-            var levelTable = this.get('level').get('chessTable'),
-                sizeX = Math.floor(this.get('width') / levelTable.get('sizeX')),
-                sizeY = Math.floor(this.get('height') / levelTable.get('sizeY')),
+            var stageTable = this.get('stage').get('chessTable'),
+                sizeX = Math.floor(this.get('width') / stageTable.get('sizeX')),
+                sizeY = Math.floor(this.get('height') / stageTable.get('sizeY')),
                 size = sizeX > sizeY ? sizeY : sizeX;
             this.set('cellSize', size);
-            this.$table.height(size * levelTable.get('sizeY')).width(size * levelTable.get('sizeX'));
+            this.$table.height(size * stageTable.get('sizeY')).width(size * stageTable.get('sizeX'));
 
             if(size !== sizeY){
-                var padding = (Math.floor(this.get('height')) - size * levelTable.get('sizeY')) / 2;
+                var padding = (Math.floor(this.get('height')) - size * stageTable.get('sizeY')) / 2;
                 this.$el.css({
                     paddingTop: padding,
                     paddingBottom: padding
@@ -137,7 +138,7 @@ define([
         },
 
         setActiveCells: function(cell) {
-            var levelTable = this.get('level').get('chessTable'),
+            var stageTable = this.get('stage').get('chessTable'),
                 chessTable = this.get('chessTable');
             this.$table.find('td.active').removeClass('active');
             var availableCells = 0;
@@ -146,7 +147,7 @@ define([
                     !chessTable[cell.get('y') - 1][cell.get('x') - 2].hasClass('disable') &&
                     chessTable[cell.get('y') - 1][cell.get('x') - 2].addClass('active') && ++availableCells;
                 }
-                if(cell.get('y') + 1 < levelTable.get('sizeY')) {
+                if(cell.get('y') + 1 < stageTable.get('sizeY')) {
                     !chessTable[cell.get('y') + 1 ][cell.get('x') - 2].hasClass('disable') &&
                     chessTable[cell.get('y') + 1 ][cell.get('x') - 2].addClass('active') && ++availableCells;
                 }
@@ -157,30 +158,30 @@ define([
                     !chessTable[cell.get('y') - 2][cell.get('x') - 1].hasClass('disable') &&
                     chessTable[cell.get('y') - 2][cell.get('x') - 1].addClass('active') && ++availableCells;
                 }
-                if(cell.get('y') + 2 < levelTable.get('sizeY')) {
+                if(cell.get('y') + 2 < stageTable.get('sizeY')) {
                     !chessTable[cell.get('y') + 2][cell.get('x') - 1].hasClass('disable') &&
                     chessTable[cell.get('y') + 2][cell.get('x') - 1].addClass('active') && ++availableCells;
                 }
             }
 
-            if(cell.get('x') + 2 < levelTable.get('sizeX')){
+            if(cell.get('x') + 2 < stageTable.get('sizeX')){
                 if(cell.get('y') - 1 >= 0) {
                     !chessTable[cell.get('y') - 1][cell.get('x') + 2].hasClass('disable') &&
                     chessTable[cell.get('y') - 1][cell.get('x') + 2].addClass('active') && ++availableCells;
                 }
 
-                if(cell.get('y') + 1 < levelTable.get('sizeY')) {
+                if(cell.get('y') + 1 < stageTable.get('sizeY')) {
                     !chessTable[cell.get('y') + 1][cell.get('x') + 2].hasClass('disable') &&
                     chessTable[cell.get('y') + 1][cell.get('x') + 2].addClass('active') && ++availableCells;
                 }
             }
 
-            if (cell.get('x') + 1 < levelTable.get('sizeX')) {
+            if (cell.get('x') + 1 < stageTable.get('sizeX')) {
                 if(cell.get('y') - 2 >= 0) {
                     !chessTable[cell.get('y') - 2][cell.get('x') + 1].hasClass('disable') &&
                     chessTable[cell.get('y') - 2][cell.get('x') + 1].addClass('active') && ++availableCells;
                 }
-                if(cell.get('y') + 2 < levelTable.get('sizeY')) {
+                if(cell.get('y') + 2 < stageTable.get('sizeY')) {
                     !chessTable[cell.get('y') + 2][cell.get('x') + 1].hasClass('disable') &&
                     chessTable[cell.get('y') + 2][cell.get('x') + 1].addClass('active') && ++availableCells;
                 }
@@ -192,20 +193,20 @@ define([
         _checkGameOver: function(availableCells) {
             if(availableCells === 0){
                 var complete = this.$table.find('td').not('.disable').length === 1;
-                this.trigger('gameOver', this.get('score'), complete);
+                this.trigger('gameOver', this.score, complete);
                 if(complete){
-                    gameService.unlockNextStage(this.get('level').get('stageId'));
+                    gameService.unlockNextStage(this.get('stage').get('id'));
                 }
             }
         },
 
         _incrementScore: function() {
             this.score++;
-            this.$el.find('.score').text(this.score);
+            $('body').find('.score').text(this.score);
         },
 
         _clearScore: function() {
-            this.set('score', 1);
+            this.score = 1;
         }
 
     });

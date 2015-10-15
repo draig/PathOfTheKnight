@@ -37,6 +37,9 @@ define([
                     complete: isComplete
                 }).show();
             }, this);
+            this.gameEngine.on('gameOver', function() {
+                this.timer.pause();
+            }, this);
         },
 
         render: function () {
@@ -50,9 +53,6 @@ define([
                 });
                 setTimeout(function() {
                     this.gameEngine.set('height', app.config.height - this.$el.find('.game-btn-bar').height());
-                    this.scoreDialog.setSize({
-                        bottom: this.$el.find('.game-btn-bar').height()
-                    })
                 }.bind(this), 0);
 
                 this.gameEngine.$el.appendTo(this.$el.find('.chess-table-wrapper'));
@@ -66,13 +66,14 @@ define([
             return this;
         },
         
-        setStage: function(level) {
-            this.gameEngine.set('level', level);
+        setStage: function(stage) {
+            this.gameEngine.set('stage', stage);
         },
 
         reset: function() {
             this.gameEngine.reset();
             this.scoreDialog.hide();
+            this.timer.startOver();
         }
 
     });

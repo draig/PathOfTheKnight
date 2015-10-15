@@ -9,6 +9,10 @@ body{
     position: relative;
 }
 
+.app {
+    background: url("../img/bk-color.png") repeat;
+}
+
 .overlay {
     position: absolute;
     top: 0;

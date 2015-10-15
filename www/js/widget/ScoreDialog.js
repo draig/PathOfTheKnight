@@ -46,13 +46,13 @@ define([
         hide: function() {
             this.$el.hide();
             this.$el.find('.dialog').hide();
-        },
+        }
 
-        setSize: function(cnfg) {
+        /*setSize: function(cnfg) {
             if(cnfg.bottom){
                 this.$el.css('bottom', cnfg.bottom);
             }
-        }
+        }*/
     });
 
     return ScoreDialog;
