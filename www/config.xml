@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
+        xmlns:android = "http://schemas.android.com/apk/res/android"
         id = "com.startappsoft.pathoftheknight"
         versionCode = "0"
         version = "0.0.0">
@@ -11,11 +12,18 @@
         A simple employee directory application
     </description>
 
-    <preference name="Orientation" value="portrait" />
+    <preference name="orientation" value="portrait" />
+
+    <gap:config-file platform="android" parent="/manifest">
+        <supports-screens
+                android:configChanges="orientation"/>
+    </gap:config-file>
 
     <author href="http://startappsoft.con" email="andrew.daskhevich@yandex.ru">
         Andrew Dashkevich
     </author>
+
+    <gap:plugin name="org.apache.cordova.media" version="0.2.13" />
 
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/contacts"/>
