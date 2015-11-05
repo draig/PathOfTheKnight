@@ -9,10 +9,11 @@ define([
     'view/InfoView',
     'view/LevelView',
     'view/StageView',
+    'view/TestView',
     'model/Stage',
     'model/ChessTable',
     'model/Cell'
-], function($, _, Backbone, app, MenuView, SettingsView, GameView, InfoView, LevelView, StageView, Stage, ChessTable, Cell){
+], function($, _, Backbone, app, MenuView, SettingsView, GameView, InfoView, LevelView, StageView, TestView, Stage, ChessTable, Cell){
 
     var Router = Backbone.Router.extend({
         routes: {
@@ -32,6 +33,7 @@ define([
             this.infoView = new InfoView();
             this.levelView = new LevelView();
             this.stageView = new StageView();
+            this.testView = new TestView();
         },
 
         settings: function() {

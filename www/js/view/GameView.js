@@ -59,7 +59,7 @@ define([
                 this._rendered = true;
             }
             this.gameEngine.render();
-
+            app.bottomAdd(true);
             this.scoreDialog.hide();
             this.delegateEvents();
             this.timer.start();

@@ -23,7 +23,13 @@
         Andrew Dashkevich
     </author>
 
-    <gap:plugin name="org.apache.cordova.media" version="0.2.13" />
+    <gap:plugin name="com.adobe.plugins.gaplugin" version="2.4.0" />
+
+    <gap:plugin name="com.admob.google" source="plugins.cordova.io" />
+
+    <!--<feature name="GAPlugin" >
+        <param name="android-package" value="com.adobe.plugins.GAPlugin"/>
+    </feature>-->
 
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/contacts"/>

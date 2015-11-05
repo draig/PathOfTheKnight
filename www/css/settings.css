@@ -1,0 +1,16 @@
+.settings-row {
+    position: relative;
+}
+
+.settings-label {
+    display: inline-block;
+    font-size: 30px;
+    padding-left: 20px;
+}
+
+.onoffswitch.settings-onoffswitch {
+    right: 20px;
+    display: inline-block;
+    top: 7px;
+    position: absolute;
+}

@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    color: #FFF59E;
 }
 
 .app {
@@ -88,5 +89,5 @@ body{
     text-align: center;
     line-height: 75px;
     font-size: 45px;
-    color: #FFF59E;
+    /*color: #FFF59E;*/
 }
