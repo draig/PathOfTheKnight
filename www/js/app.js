@@ -22,13 +22,13 @@ define([
     };
 
     document.addEventListener("deviceready", function() {
-        if(admob) {
+        /*if(admob) {
             admob.setOptions({
-                publisherId:          "ca-app-pub-3753181130274985/7091690150"/*,  // Required
+                publisherId:          "ca-app-pub-3753181130274985/7091690150"*//*,  // Required
                 interstitialAdId:     "ca-app-pub-3753181130274985/IIIIIIIIII",  // Optional
                 tappxIdiOs:           "/XXXXXXXXX/Pub-XXXX-iOS-IIII",            // Optional
                 tappxIdAndroid:       "/XXXXXXXXX/Pub-XXXX-Android-AAAA",        // Optional
-                tappxShare:           0.5                                    */    // Optional
+                tappxShare:           0.5                                    *//*    // Optional
             });
             App.bottomAdd = function(show) {
                 if(show){
@@ -45,10 +45,12 @@ define([
                 }
 
             };
-        }
+        }*/
+
         if(window.plugins && window.plugins.gaPlugin) {
+            var emptyFunc = function() {};
             App.googleAnalytics = window.plugins.gaPlugin;
-            App.googleAnalytics.init(null, null, "UA-69686656-1", 30);
+            App.googleAnalytics.init(emptyFunc, emptyFunc, 'UA-69686656-1', 10);
 
         }
     }, false);
