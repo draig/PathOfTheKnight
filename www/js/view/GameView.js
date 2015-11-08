@@ -44,6 +44,7 @@ define([
 
         render: function () {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
+            app.addMode.showAd();
             if(!this._rendered){
                 this.$el.html(this.template({}));
                 this.timer.setElement(this.$el.find('.game-time'));
@@ -59,7 +60,6 @@ define([
                 this._rendered = true;
             }
             this.gameEngine.render();
-            app.bottomAdd(true);
             this.scoreDialog.hide();
             this.delegateEvents();
             this.timer.start();

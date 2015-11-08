@@ -15,6 +15,10 @@ define([
 
         className: 'kp-menu',
 
+        events: {
+            'click #volume': 'volume'
+        },
+
         render: function () {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
             if(!this._rendered){
@@ -23,6 +27,10 @@ define([
             }
             this.delegateEvents();
             return this;
+        },
+
+        volume: function() {
+            app.localStorage.getLevels()
         }
     });
 

@@ -23,20 +23,21 @@
         Andrew Dashkevich
     </author>
 
-    <gap:plugin name="com.adobe.plugins.gaplugin" version="2.4.0" />
+    <gap:plugin name="org.apache.cordova.media" version="0.2.13" />
 
-    <!--<gap:plugin name="com.admob.google" source="plugins.cordova.io" />-->
 
-    <!--<feature name="GAPlugin" >
-        <param name="android-package" value="com.adobe.plugins.GAPlugin"/>
-    </feature>-->
 
-    <feature name="http://api.phonegap.com/1.0/camera"/>
+    <gap:plugin name="cordova-admob" source="npm" version="4.1.6" />
+
+    <!--<gap:plugin name="com.adobe.plugins.gaplugin" version="2.4.0" />-->
+
+    <feature name="http://api.phonegap.com/1.0/network"/>
+    <feature name="http://api.phonegap.com/1.0/geolocation"/>
+
+    <!--<feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/contacts"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
-    <feature name="http://api.phonegap.com/1.0/geolocation"/>
     <feature name="http://api.phonegap.com/1.0/media"/>
-    <feature name="http://api.phonegap.com/1.0/network"/>
-    <feature name="http://api.phonegap.com/1.0/notification"/>
+    <feature name="http://api.phonegap.com/1.0/notification"/>-->
 
 </widget>

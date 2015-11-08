@@ -3,8 +3,9 @@ define([
     'underscore',
     'backbone',
     'util/Adaptive',
-    'storage/LocalStorage'
-], function($, _, Backbone, Adaptive, LocalStorage){
+    'storage/LocalStorage',
+    'util/AdMode'
+], function($, _, Backbone, Adaptive, LocalStorage, AdMode){
     var App = {
         initialize: function() {
             // Pass in our Router module and call it's initialize function
@@ -12,52 +13,36 @@ define([
             Adaptive.addClass(App.config.width);
         },
 
-        bottomAdd: function(show) {
-            
+        showLoading: function() {
+            $('.loading').css('z-index', '1');
         },
-        
-        fullAdd: function(show) {
-            
+
+        hideLoading: function() {
+            $('.loading').css('z-index', '-1');
         }
     };
 
+    /*$(function(){
+        App.hideLoading();
+    });*/
+
     document.addEventListener("deviceready", function() {
-        /*if(admob) {
-            admob.setOptions({
-                publisherId:          "ca-app-pub-3753181130274985/7091690150"*//*,  // Required
-                interstitialAdId:     "ca-app-pub-3753181130274985/IIIIIIIIII",  // Optional
-                tappxIdiOs:           "/XXXXXXXXX/Pub-XXXX-iOS-IIII",            // Optional
-                tappxIdAndroid:       "/XXXXXXXXX/Pub-XXXX-Android-AAAA",        // Optional
-                tappxShare:           0.5                                    *//*    // Optional
-            });
-            App.bottomAdd = function(show) {
-                if(show){
-                    admob.createBannerView();
-                } else {
-                    admob.destroyBannerView();
-                }
-            };
-            App.fullAdd = function(show) {
-                if(show) {
-                    admob.requestInterstitial();
-                } else {
-                    admob.destroyBannerView();
-                }
-
-            };
-        }*/
-
         if(window.plugins && window.plugins.gaPlugin) {
-            var emptyFunc = function() {};
-            App.googleAnalytics = window.plugins.gaPlugin;
-            App.googleAnalytics.init(emptyFunc, emptyFunc, 'UA-69686656-1', 10);
-
+            var googleAnalytics = window.plugins.gaPlugin;
+            googleAnalytics.init(function() {
+                App.googleAnalytics = googleAnalytics;
+                alert('google analytics init success');
+            }, function() {
+                alert('google analytics init fail');
+            }, 'UA-69686656-1', 10);
         }
     }, false);
 
 
     // Global event aggregator
     App.eventAggregator = _.extend({}, Backbone.Events);
+
+    App.addMode = new AdMode();
 
     document.addEventListener("deviceready", function() {
         try {

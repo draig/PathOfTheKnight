@@ -68,6 +68,14 @@ define([], function(){
             window.localStorage.setItem(field, JSON.stringify(value));
         };
 
+        this.getVolume = function() {
+            return !!JSON.parse(window.localStorage.getItem('volume'));
+        };
+
+        this.setVolume = function(volume) {
+            this.insert('volume', volume);
+        };
+
         this.getStagesByLevelId = function(levelId) {
             var employees = JSON.parse(window.localStorage.getItem("employees"));
         },
@@ -149,9 +157,9 @@ define([], function(){
             }
         };
 
-        var settings = {
-            music: true
-        };
+        /*var settings = {
+            volume: true
+        };*/
 
         var levels = [
             {id: 0, name: 'classic', pos: 10, img: 'classic.png', enable: true},
@@ -257,7 +265,7 @@ define([], function(){
             { id: 6, x: 0, y: 0}
         ];
 
-        this.save('settings', settings);
+        this.insert('volume', true);
         this.save('chessTables', chessTables);
         this.save('horses', horses);
         this.save('stages', stages);

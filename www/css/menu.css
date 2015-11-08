@@ -116,12 +116,12 @@ body {
     padding: 10px;
 }
 
-.menu-btn.settings-btn {
+.menu-btn.volume-btn {
     bottom: 0px;
-    right: 0px;
+    left: 0px;
 }
 
 .menu-btn.info-btn {
     bottom: 0px;
-    left: 0px;
+    right: 0px;
 }
