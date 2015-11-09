@@ -22,10 +22,6 @@ define([
         }
     };
 
-    /*$(function(){
-        App.hideLoading();
-    });*/
-
     document.addEventListener("deviceready", function() {
         if(window.plugins && window.plugins.gaPlugin) {
             var googleAnalytics = window.plugins.gaPlugin;
@@ -51,8 +47,6 @@ define([
         } catch (e) {
             alert(e);
         }
-
-
     }, false);
 
     App.localStorage = new LocalStorage();

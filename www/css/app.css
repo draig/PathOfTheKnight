@@ -89,6 +89,20 @@ body{
     text-align: center;
     line-height: 75px;
     font-size: 45px;
+    display: block;
+    color: #FFF59E;
+    text-decoration: none;
+}
+
+.page-title:before {
+    background: url("../img/arrow-left.png");
+    background-size: contain;
+    content: ' ';
+    width: 75px;
+    top: 0;
+    left: 0;
+    height: 75px;
+    position: absolute;
 }
 
 .loading {

@@ -73,7 +73,7 @@ define([], function(){
         };
 
         this.setVolume = function(volume) {
-            this.insert('volume', volume);
+            this.save('volume', volume);
         };
 
         this.getStagesByLevelId = function(levelId) {

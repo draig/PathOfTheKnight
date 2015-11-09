@@ -16,21 +16,31 @@ define([
         className: 'kp-menu',
 
         events: {
-            'click #volume': 'volume'
+            'click .volume-btn': 'toggleVolume'
         },
 
         render: function () {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
             if(!this._rendered){
                 this.$el.html(this.template(local));
+                this.volume(app.localStorage.getVolume());
                 this._rendered = true;
             }
             this.delegateEvents();
             return this;
         },
 
-        volume: function() {
-            app.localStorage.getLevels()
+        volume: function(volume) {
+            if(volume) {
+                this.$el.find('.volume-btn img').prop('src', 'img/volume.png');
+            } else {
+                this.$el.find('.volume-btn img').prop('src', 'img/no-volume.png');
+            }
+            app.localStorage.setVolume(volume);
+        },
+
+        toggleVolume: function() {
+            this.volume(!app.localStorage.getVolume())
         }
     });
 
