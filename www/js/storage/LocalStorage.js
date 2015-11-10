@@ -123,8 +123,7 @@ define([], function(){
             var stage = JSON.parse(JSON.parse(window.localStorage.getItem('stages'))[stageId]),
                 horse = JSON.parse(JSON.parse(window.localStorage.getItem('horses'))[stage.horseId]),
                 cells = JSON.parse(JSON.parse(window.localStorage.getItem('chessTables'))[stage.chessTableId]).cells;
-
-            callback(stage.id, cells, horse);
+            callback(stage.id, cells, horse, stage.levelId);
         };
 
         this.getNextStage = function(stageId) {
