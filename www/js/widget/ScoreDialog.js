@@ -2,9 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'app',
     'text!../../template/widget/dialog.html',
     'text!../../template/dialog/scoreDialog.html'
-], function($, _, Backbone, DialogTpl, ScoreDialogTpl){
+], function($, _, Backbone, app, DialogTpl, ScoreDialogTpl){
 
     var ScoreDialog = Backbone.View.extend({
 
@@ -12,10 +13,11 @@ define([
 
         bodyTemplate: _.template(ScoreDialogTpl),
 
-//        className: 'overlay',
         className: 'scoreDialog',
 
-//        dlgClass: 'scoreDialog',
+        events: {
+            'click .reset': 'reset'
+        },
 
         /*
         * @complete
@@ -31,6 +33,8 @@ define([
             }
             $('.app').append(this.$el);
             this.$body = this.$el.html(this.bodyTemplate(config || {}));
+            this.$el.find('.to-stages').prop('href', '#level/' + config.stage.get('levelId') + '/stage');
+            this.$el.find('.reset-btn');
             this.delegateEvents();
             return this;
         },
@@ -46,13 +50,12 @@ define([
         hide: function() {
             this.$el.hide();
             this.$el.find('.dialog').hide();
-        }
+        },
 
-        /*setSize: function(cnfg) {
-            if(cnfg.bottom){
-                this.$el.css('bottom', cnfg.bottom);
-            }
-        }*/
+        reset: function() {
+            this.hide();
+            app.eventAggregator.trigger('resetGame');
+        }
     });
 
     return ScoreDialog;

@@ -2,14 +2,16 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'util/Util',
     'util/Adaptive',
+    'util/Audio',
     'storage/LocalStorage',
     'util/AdMode'
-], function($, _, Backbone, Adaptive, LocalStorage, AdMode){
+], function($, _, Backbone, util, Adaptive, audio, LocalStorage, AdMode){
     var App = {
         initialize: function() {
             // Pass in our Router module and call it's initialize function
-            this.router.initialize();
+            //this.router.initialize();
             Adaptive.addClass(App.config.width);
         },
 
@@ -40,16 +42,34 @@ define([
 
     App.addMode = new AdMode();
 
-    document.addEventListener("deviceready", function() {
+    App.localStorage = new LocalStorage();
+
+    var audioInit = function() {
         try {
-            App.audio = new Media('/android_asset/www/audio/way_back_home.mp3', function() {});
-            App.audio.play();
+            //App.audio = new Media('/android_asset/www/audio/way_back_home.mp3', function() {});
+            //App.audio.play();
+            App.audio = audio;
+            App.audio.setTracks([
+                'audio/Adam_Selzer_-_Whistle_And_Action.mp3'
+            ]);
+            if(App.localStorage.getVolume()){
+                App.audio.playAudio();
+            }
+            App.eventAggregator.on('volume', function(volume) {
+                if(volume) {
+                    App.audio.resume();
+                } else {
+                    App.audio.pause();
+                }
+            });
         } catch (e) {
             alert(e);
         }
-    }, false);
+    };
 
-    App.localStorage = new LocalStorage();
+    util.isMobile() ? $(document).on('deviceready', audioInit) : audioInit();
+
+
 
     App.config = {
         width: $('.app').width(),

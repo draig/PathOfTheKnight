@@ -48,7 +48,7 @@ define([
         },
 
         _createTable: function(table) {
-            chessTable = [];
+            var chessTable = [];
             for(var i = 0; i < table.get('sizeY'); ++i){
                 chessTable.push([]);
                 for(var j = 0; j < table.get('sizeX'); ++j){
@@ -193,7 +193,7 @@ define([
         _checkGameOver: function(availableCells) {
             if(availableCells === 0){
                 var complete = this.$table.find('td').not('.disable').length === 1;
-                this.trigger('gameOver', this.score, complete);
+                this.trigger('gameOver', this.score, complete, this.get('stage'));
                 if(complete){
                     gameService.unlockNextStage(this.get('stage').get('id'));
                 }

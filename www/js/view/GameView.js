@@ -27,14 +27,17 @@ define([
             this.scoreDialog = new ScoreDialog({});
             this.timer = new Timer({});
 
+            app.eventAggregator.on('resetGame', this.reset, this);
+
             this.gameEngine.on('change:score', function(score) {
                 this.$el.find('.score').text(score);
             }, this);
 
-            this.gameEngine.on('gameOver', function(score, isComplete) {
+            this.gameEngine.on('gameOver', function(score, isComplete, stage) {
                 this.scoreDialog.render({
                     score: score,
-                    complete: isComplete
+                    complete: isComplete,
+                    stage: stage
                 }).show();
             }, this);
             this.gameEngine.on('gameOver', function() {
