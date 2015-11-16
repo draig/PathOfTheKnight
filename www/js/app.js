@@ -46,11 +46,11 @@ define([
 
     var audioInit = function() {
         try {
-            //App.audio = new Media('/android_asset/www/audio/way_back_home.mp3', function() {});
+            //App.audio = new Media('/android_asset/www/audio/Adam_Selzer_-_Whistle_And_Action.mp3', function() {});
             //App.audio.play();
             App.audio = audio;
             App.audio.setTracks([
-                'audio/Adam_Selzer_-_Whistle_And_Action.mp3'
+                '/audio/Adam_Selzer_-_Whistle_And_Action.mp3'
             ]);
             if(App.localStorage.getVolume()){
                 App.audio.playAudio();
@@ -67,9 +67,13 @@ define([
         }
     };
 
-    util.isMobile() ? $(document).on('deviceready', audioInit) : audioInit();
-
-
+    if(!util.isMobile()) {
+        audioInit();
+    } else {
+        document.addEventListener("deviceready", function() {
+            audioInit();
+        }, false);
+    }
 
     App.config = {
         width: $('.app').width(),

@@ -1,15 +1,26 @@
-define([], function(){
+define(['jquery'], function(){
     var AdMode = function() {
         this._isVisible = false;
 
         this.showAd = function() {};
         this.hideAd = function() {};
 
+        this.bannerHeight = function() {
+            var height = $(document).height();
+            if(height <= 400){
+                return 32;
+            } else if (height <= 720) {
+                return 50
+            }
+            return 90;
+        };
+
         document.addEventListener("deviceready", function() {
-            if(admob) {
+            if(window.admob) {
                 admob.createBannerView({
                     publisherId: 'ca-app-pub-3753181130274985/7091690150',
-                    autoShowBanner: false
+                    autoShowBanner: false,
+                    overlap: true
                 });
 
                 this.showAd = function() {

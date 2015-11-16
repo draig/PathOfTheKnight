@@ -3,12 +3,11 @@ define([
     'underscore',
     'backbone',
     'app',
-    'jqueryUI',
     'service/GameEngine',
     'widget/ScoreDialog',
     'widget/Timer',
     'text!../../template/game.html'
-], function($, _, Backbone, app, jqueryUI, GameEngine, ScoreDialog, Timer, GameTpl){
+], function($, _, Backbone, app, GameEngine, ScoreDialog, Timer, GameTpl){
 
     var GameView = Backbone.View.extend({
 
@@ -56,8 +55,11 @@ define([
                     width: app.config.width,
                     height: app.config.width
                 });
+                this.$el.find('.game-btn-bar').css('bottom', app.addMode.bannerHeight());
                 setTimeout(function() {
-                    this.gameEngine.set('height', app.config.height - this.$el.find('.game-btn-bar').height());
+                    this.gameEngine.set('height', app.config.height
+                        - this.$el.find('.game-btn-bar').height()
+                        - app.addMode.bannerHeight());
                 }.bind(this), 0);
 
                 this.gameEngine.$el.appendTo(this.$el.find('.chess-table-wrapper'));
@@ -68,6 +70,14 @@ define([
             this.scoreDialog.hide();
             this.delegateEvents();
             this.timer.start();
+
+            app.router.on("route", function(route, params) {
+                if(route !== 'game'){
+                    app.addMode.hideAd();
+                    app.router.off('route')
+                }
+            });
+
             return this;
         },
 

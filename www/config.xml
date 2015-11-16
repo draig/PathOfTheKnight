@@ -25,9 +25,7 @@
 
     <gap:plugin name="org.apache.cordova.media" version="0.2.13" />
 
-
-
-    <!--<gap:plugin name="cordova-admob" source="npm" version="4.1.6" />-->
+    <gap:plugin name="cordova-admob" source="npm" version="4.1.6" />
 
     <gap:plugin name="cordova-plugin-device" version="1.0.1" />
 
@@ -35,6 +33,14 @@
 
     <feature name="http://api.phonegap.com/1.0/network"/>
     <feature name="http://api.phonegap.com/1.0/geolocation"/>
+
+    <icon src="img/appicons/xxhdpi.png" />
+    <icon src="img/appicons/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
+    <icon src="img/appicons/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
+    <icon src="img/appicons/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
+    <icon src="img/appicons/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
+    <icon src="img/appicons/xxhdpi.png" gap:platform="android" gap:qualifier="xxhdpi" />
+
 
     <!--<feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/contacts"/>

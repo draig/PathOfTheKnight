@@ -1,4 +1,4 @@
-define([], function(){
+define([], function() {
     if(!window.Media) {
         window.Media = Audio;
 
@@ -9,8 +9,6 @@ define([], function(){
         window.Media.prototype.getCurrentPosition = function() {
             return this.currentTime
         };
-
-        window.Media.prototype.MEDIA_STOPPED = 'ended';
     }
 
     var DeviceAudio = {
@@ -19,36 +17,26 @@ define([], function(){
         trackList: [],
 
 
-
         playAudio: function(src) {
-            var track = src || this.selectTrack();
+            try {
+                var track = src || this.selectTrack();
 
-            if(track) {
-                /*if(device && device.platform === "Android") {
-                    track += '/android_asset/www' + track;
-                }*/
-
-                var audioloop = function (status) {
-                    if (!Media.MEDIA_STOPPED || status === Media.MEDIA_STOPPED) {
-                        this.playAudio();
-                    }
-                }.bind(this);
-
-                this.media = new Media(track, null, this.onError, audioloop);
-
-                $(this.media).on('ended', audioloop);
-
-                if (this.mediaTimer !== null) {
-                    clearTimeout(this.mediaTimer)
+                if(track) {
+                    if(window.device && device.platform === "Android") {
+                        track = '/android_asset/www' + track;
+                     }
+                    var audioloop = function(status) {
+                        if(!Media.MEDIA_STOPPED || status === Media.MEDIA_STOPPED) {
+                            this.playAudio();
+                        }
+                    }.bind(this);
+                    this.media = new Media(track, this.onSuccess, this.onError, audioloop);
+                    $(this.media).on('ended', audioloop);
+                    this.media.load && this.media.load();
+                    this.media.play();
                 }
-
-                this.media.load && this.media.load();
-
-                /*this.mediaTimer = setTimeout(function() {
-                    this.playAudio();
-                }.bind(this), this.media.getDuration());*/
-
-                this.media.play();
+            } catch(e) {
+                alert(e);
             }
         },
 
@@ -61,17 +49,13 @@ define([], function(){
         },
 
         pause: function() {
-            if (this.media) {
+            if(this.media) {
                 this.media.pause();
-                clearInterval(this.mediaTimer);
             }
         },
 
         resume: function() {
-            if (this.media) {
-                /*this.mediaTimer = setTimeout(function() {
-                    this.playAudio();
-                }.bind(this), this.media.getDuration() - this.media.getCurrentPosition());*/
+            if(this.media) {
                 this.media.play();
             } else {
                 this.playAudio();
@@ -79,26 +63,26 @@ define([], function(){
         },
 
         /*stopAudio: function() {
-            if (this.media) {
-                this.media.stop();
-            }
-            clearInterval(this.mediaTimer);
-            this.mediaTimer = null;
-        },*/
+         if (this.media) {
+         this.media.stop();
+         }
+         clearInterval(this.mediaTimer);
+         this.mediaTimer = null;
+         },*/
 
         onSuccess: function() {
             console.log("playAudio():Audio Success");
         },
 
         onError: function(error) {
-            alert('code: '    + error.code    + '\n' +
+            alert('code: ' + error.code + '\n' +
                 'message: ' + error.message + '\n');
         },
 
         selectTrack: function() {
             var track = null;
-            if(this.trackList && this.trackList.length !== 0){
-                track = this.trackList.splice(0,1)[0];
+            if(this.trackList && this.trackList.length !== 0) {
+                track = this.trackList.splice(0, 1)[0];
                 this.trackList.push(track);
             }
             return track;
