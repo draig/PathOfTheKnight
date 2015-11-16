@@ -16,9 +16,16 @@ define([], function(){
                     if(!this._isVisible) {
                         admob.showBannerAd(true);
                         this._nextAd = setInterval(function(){
-                            admob.showBannerAd(false);
-                            admob.showBannerAd(true);
-                        }, 25000);
+                            try {
+                                admob.createBannerView({
+                                    publisherId: 'ca-app-pub-3753181130274985/7091690150',
+                                    autoShowBanner: true
+                                });
+                            } catch (e){
+                                alert(e);
+                            }
+
+                        }, 10000);
                         this._isVisible = true;
                     }
 

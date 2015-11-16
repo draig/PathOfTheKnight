@@ -45,17 +45,17 @@ define([
         },
 
         game: function(stageId) {
-            app.localStorage.getStage(stageId, function(stageId, cells, horse) {
-                this.gameView.setStage(new Stage ({
+            app.localStorage.getStage(stageId, function(stageId, cells, horse, levelId) {
+                $('.app').html(this.gameView.render(new Stage ({
                     id: stageId,
+                    levelId: levelId,
                     chessTable: new ChessTable({
                         sizeY: cells.length,
                         sizeX: cells[0].length,
                         cells: cells
                     }),
                     horse: new Cell(horse)
-                }));
-                $('.app').html(this.gameView.render().$el);
+                })).$el);
             }.bind(this));
         },
 

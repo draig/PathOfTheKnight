@@ -27,14 +27,17 @@ define([
             this.scoreDialog = new ScoreDialog({});
             this.timer = new Timer({});
 
+            app.eventAggregator.on('resetGame', this.reset, this);
+
             this.gameEngine.on('change:score', function(score) {
                 this.$el.find('.score').text(score);
             }, this);
 
-            this.gameEngine.on('gameOver', function(score, isComplete) {
+            this.gameEngine.on('gameOver', function(score, isComplete, stage) {
                 this.scoreDialog.render({
                     score: score,
-                    complete: isComplete
+                    complete: isComplete,
+                    stage: stage
                 }).show();
             }, this);
             this.gameEngine.on('gameOver', function() {
@@ -42,8 +45,9 @@ define([
             }, this);
         },
 
-        render: function () {
+        render: function (stage) {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
+            this.gameEngine.set('stage', stage);
             app.addMode.showAd();
             if(!this._rendered){
                 this.$el.html(this.template({}));
@@ -59,21 +63,22 @@ define([
                 this.gameEngine.$el.appendTo(this.$el.find('.chess-table-wrapper'));
                 this._rendered = true;
             }
+            this.setLevel(stage.get('levelId'));
             this.gameEngine.render();
             this.scoreDialog.hide();
             this.delegateEvents();
             this.timer.start();
             return this;
         },
-        
-        setStage: function(stage) {
-            this.gameEngine.set('stage', stage);
-        },
 
         reset: function() {
             this.gameEngine.reset();
             this.scoreDialog.hide();
             this.timer.startOver();
+        },
+
+        setLevel: function(levelId) {
+            this.$el.find('.to-stages').prop('href', '#level/' + levelId + '/stage');
         }
 
     });
