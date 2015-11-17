@@ -71,12 +71,14 @@ define([
             this.delegateEvents();
             this.timer.start();
 
-            app.router.on("route", function(route, params) {
+            var toogleAds = function(route, params) {
                 if(route !== 'game'){
                     app.addMode.hideAd();
-                    app.router.off('route');
+                    app.router.unbind('route', toogleAds);
                 }
-            });
+            };
+
+            app.router.bind('route', toogleAds);
 
             return this;
         },
