@@ -74,7 +74,7 @@ define([
             app.router.on("route", function(route, params) {
                 if(route !== 'game'){
                     app.addMode.hideAd();
-                    app.router.off('route')
+                    app.router.off('route');
                 }
             });
 
