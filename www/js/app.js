@@ -50,7 +50,7 @@ define([
             //App.audio.play();
             App.audio = audio;
             App.audio.setTracks([
-                '/audio/Adam_Selzer_-_Whistle_And_Action.mp3'
+                'audio/Adam_Selzer_-_Whistle_And_Action.mp3'
             ]);
             if(App.localStorage.getVolume()){
                 App.audio.playAudio();

@@ -23,7 +23,7 @@ define([], function() {
 
                 if(track) {
                     if(window.device && device.platform === "Android") {
-                        track = '/android_asset/www' + track;
+                        track = '/android_asset/www/' + track;
                      }
                     var audioloop = function(status) {
                         if(!Media.MEDIA_STOPPED || status === Media.MEDIA_STOPPED) {

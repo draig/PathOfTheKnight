@@ -86,22 +86,23 @@ define([
         },
 
         _resizeTable: function() {
-            var stageTable = this.get('stage').get('chessTable'),
-                sizeX = Math.floor(this.get('width') / stageTable.get('sizeX')),
-                sizeY = Math.floor(this.get('height') / stageTable.get('sizeY')),
-                size = sizeX > sizeY ? sizeY : sizeX;
-            this.set('cellSize', size);
-            this.$table.height(size * stageTable.get('sizeY')).width(size * stageTable.get('sizeX'));
+            if(this.get('width') && this.get('height')) {
+                var stageTable = this.get('stage').get('chessTable'),
+                    sizeX = Math.floor(this.get('width') / stageTable.get('sizeX')),
+                    sizeY = Math.floor(this.get('height') / stageTable.get('sizeY')),
+                    size = sizeX > sizeY ? sizeY : sizeX;
+                this.set('cellSize', size);
+                this.$table.height(size * stageTable.get('sizeY')).width(size * stageTable.get('sizeX'));
 
-            if(size !== sizeY){
-                var padding = (Math.floor(this.get('height')) - size * stageTable.get('sizeY')) / 2;
-                this.$el.css({
-                    paddingTop: padding,
-                    paddingBottom: padding
-                });
+                if(size !== sizeY){
+                    var padding = (Math.floor(this.get('height')) - size * stageTable.get('sizeY')) / 2;
+                    this.$el.css({
+                        paddingTop: padding,
+                        paddingBottom: padding
+                    });
+                }
+                this._renderKnight();
             }
-
-            this._renderKnight()
         },
 
         _renderKnight: function() {
@@ -113,6 +114,7 @@ define([
             var horse = this.get('horse');
             setTimeout(function() {
                 this.$knight.offset(chessTable[horse.get('y')][horse.get('x')].offset());
+                this.trigger('gameEngineRendered');
             }.bind(this), 0);
         },
 

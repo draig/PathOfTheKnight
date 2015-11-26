@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'app',
-    'service/GameEngine',
+    'engine/GameEngine',
     'widget/ScoreDialog',
     'widget/Timer',
     'text!../../template/game.html'
@@ -32,11 +32,16 @@ define([
                 this.$el.find('.score').text(score);
             }, this);
 
+            this.gameEngine.on('gameEngineRendered', function(score) {
+                app.hideLoading();
+            }, this);
+
             this.gameEngine.on('gameOver', function(score, isComplete, stage) {
                 this.scoreDialog.render({
                     score: score,
                     complete: isComplete,
-                    stage: stage
+                    stage: stage,
+                    nextStage: app.localStorage.getNextStage(stage.get('id'))
                 }).show();
             }, this);
             this.gameEngine.on('gameOver', function() {
@@ -46,20 +51,19 @@ define([
 
         render: function (stage) {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
+            app.showLoading();
             this.gameEngine.set('stage', stage);
             app.addMode.showAd();
             if(!this._rendered){
                 this.$el.html(this.template({}));
                 this.timer.setElement(this.$el.find('.game-time'));
-                this.gameEngine.set({
-                    width: app.config.width,
-                    height: app.config.width
-                });
                 this.$el.find('.game-btn-bar').css('bottom', app.addMode.bannerHeight());
                 setTimeout(function() {
-                    this.gameEngine.set('height', app.config.height
-                        - this.$el.find('.game-btn-bar').height()
-                        - app.addMode.bannerHeight());
+                    var height = app.config.height - this.$el.find('.game-btn-bar').height() - app.addMode.bannerHeight()
+                    this.gameEngine.set({
+                        width: app.config.width,
+                        height: height
+                    });
                 }.bind(this), 0);
 
                 this.gameEngine.$el.appendTo(this.$el.find('.chess-table-wrapper'));

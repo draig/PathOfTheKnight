@@ -34,7 +34,6 @@ define([
             $('.app').append(this.$el);
             this.$body = this.$el.html(this.bodyTemplate(config || {}));
             this.$el.find('.to-stages').prop('href', '#level/' + config.stage.get('levelId') + '/stage');
-            this.$el.find('.next').prop('href', '#level/' + config.nextStageId + '/stage' );
             this.delegateEvents();
             return this;
         },
