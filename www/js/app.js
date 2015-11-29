@@ -24,19 +24,6 @@ define([
         }
     };
 
-    document.addEventListener("deviceready", function() {
-        if(window.plugins && window.plugins.gaPlugin) {
-            var googleAnalytics = window.plugins.gaPlugin;
-            googleAnalytics.init(function() {
-                App.googleAnalytics = googleAnalytics;
-                alert('google analytics init success');
-            }, function() {
-                alert('google analytics init fail');
-            }, 'UA-69686656-1', 10);
-        }
-    }, false);
-
-
     // Global event aggregator
     App.eventAggregator = _.extend({}, Backbone.Events);
 
@@ -89,6 +76,28 @@ define([
             this.onClose();
         }
     };
+
+    document.addEventListener("pause", function () {
+        App.audio.pause();
+    }, false);
+
+    document.addEventListener("resume", function () {
+        if(App.localStorage.getVolume()){
+            App.audio.resume();
+        }
+    }, false);
+
+    document.addEventListener("deviceready", function() {
+        if(window.plugins && window.plugins.gaPlugin) {
+            var googleAnalytics = window.plugins.gaPlugin;
+            googleAnalytics.init(function() {
+                App.googleAnalytics = googleAnalytics;
+                alert('google analytics init success');
+            }, function() {
+                alert('google analytics init fail');
+            }, 'UA-69686656-1', 10);
+        }
+    }, false);
 
     return App;
 });

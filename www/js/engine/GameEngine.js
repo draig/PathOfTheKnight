@@ -133,10 +133,32 @@ define([
                     }
 
                     horse.set('x', $(this).data('x')).set('y', $(this).data('y'));
-                    scope.$knight.offset($(this).offset());
-                    scope.setActiveCells(scope.get('horse'));
+
+                    var steps = scope._createKnightSteps($(this).offset(), scope.$knight.offset());
+                    scope.set('lock', true);
+                    scope.$knight.animate(steps[0], {
+                        duration: 500
+                    }).animate(steps[1], {
+                        duration: 250,
+                        complete: function () {
+                            scope.setActiveCells(scope.get('horse'));
+                            scope.set('lock', false);
+                        }
+                    });
                 }
             });
+        },
+
+        _createKnightSteps: function (targetOffset, currentOffset) {
+            var steps = [];
+            if(Math.abs(targetOffset.top - currentOffset.top) > Math.abs(targetOffset.left - currentOffset.left)) {
+                steps.push({top: targetOffset.top});
+                steps.push({left: targetOffset.left});
+            } else {
+                steps.push({left: targetOffset.left});
+                steps.push({top: targetOffset.top});
+            }
+            return steps;
         },
 
         setActiveCells: function(cell) {
