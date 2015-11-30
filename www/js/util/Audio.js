@@ -1,4 +1,4 @@
-define([], function() {
+define(['jquery'], function($) {
     if(!window.Media) {
         window.Media = Audio;
 
@@ -15,34 +15,45 @@ define([], function() {
         media: null,
         mediaTimer: null,
         trackList: [],
+        cfg: {},
 
 
-        playAudio: function(src) {
+        playAudio: function(rec) {
             try {
-                var track = src || this.selectTrack();
+                var track = rec || this.selectTrack();
 
                 if(track) {
                     if(window.device && device.platform === "Android") {
-                        track = '/android_asset/www' + track;
+                        track.url = '/android_asset/www' + track.url;
                      }
                     var audioloop = function(status) {
                         if(!Media.MEDIA_STOPPED || status === Media.MEDIA_STOPPED) {
                             this.playAudio();
                         }
                     }.bind(this);
-                    this.media = new Media(track, this.onSuccess, this.onError, audioloop);
+                    this.media = new Media(track.url, this.onSuccess, this.onError, audioloop);
                     $(this.media).on('ended', audioloop);
                     this.media.load && this.media.load();
                     this.media.play();
+                    if(this.cfg.onNewTrackPlay) {
+                        this.cfg.onNewTrackPlay(track);
+                    }
                 }
             } catch(e) {
                 alert(e);
             }
         },
 
+        setConfig: function(config) {
+            $.extend(true, this.cfg, config);
+            return this;
+        },
+
         setTracks: function(traks) {
             if(typeof traks === "string") {
-                this.trackList = [traks];
+                this.trackList = [{
+                    url: traks
+                }];
             } else {
                 this.trackList = this.shuffle(traks);
             }

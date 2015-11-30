@@ -46,11 +46,31 @@ define([
 
     var audioInit = function() {
         try {
-            //App.audio = new Media('/android_asset/www/audio/Adam_Selzer_-_Whistle_And_Action.mp3', function() {});
-            //App.audio.play();
-            App.audio = audio;
+            App.audio = audio.setConfig({
+                onNewTrackPlay: function(track) {
+                    if(window.plugins && window.plugins.toast){
+                        window.plugins.toast.showShortBottom(track.author);
+                    }
+                }
+            });
             App.audio.setTracks([
-                '/audio/Adam_Selzer_-_Whistle_And_Action.mp3'
+                {
+                    url: '/audio/Adam_Selzer_-_Whistle_And_Action.mp3',
+                    author: 'Adam Selzer - Whistle And Action'
+                },
+                {
+                    url: '/audio/Dexter_Britain_-_06_-_Summers_Coming.mp3',
+                    author: 'DexterBritain - Summers Coming'
+                },
+                {
+                    url: '/audio/Kevin_MacLeod_-_Master_of_the_Feast.mp3',
+                    author: 'Kevin MacLeod - Master of the Feast'
+                },
+                {
+                    url: '/audio/Podington_Bear_-_Good_Times.mp3',
+                    author: 'Podington Bear - Good Times'
+                }
+
             ]);
             if(App.localStorage.getVolume()){
                 App.audio.playAudio();
