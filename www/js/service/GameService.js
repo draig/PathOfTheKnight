@@ -1,6 +1,10 @@
 define(['app'], function(app){
     var GameService = {
 
+        completeStage: function (stageId) {
+            app.localStorage.completeStage(stageId);
+        },
+
         unlockNextStage: function(stageId) {
             var nextStage = this.nextStage(stageId);
             if(nextStage){

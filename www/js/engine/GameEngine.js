@@ -219,6 +219,7 @@ define([
                 var complete = this.$table.find('td').not('.disable').length === 1;
                 this.trigger('gameOver', this.score, complete, this.get('stage'));
                 if(complete){
+                    gameService.completeStage(this.get('stage').get('id'));
                     gameService.unlockNextStage(this.get('stage').get('id'));
                 }
             }
