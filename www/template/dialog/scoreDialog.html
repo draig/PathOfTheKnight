@@ -4,8 +4,8 @@
     <div class="res-complete"><% if(complete){ %>Success<% } else { %>Fail<% } %></div>
 </div>
 
-<% if(complete){ %> <a class="btn next" href="#level">Дальше</a><% } %>
-
+<% if(complete && nextStage){ %> <a class="btn next" href="#game/<%= nextStage.id %>">Дальше</a><% } %>
+<% if(complete && !nextStage){ %> <a class="btn next" href="#level/<%= stage.get('levelId') %>/stage">К уровням</a><% } %>
 
 <div class="game-btn-bar">
     <img src="img/refresh.png" class="reset">

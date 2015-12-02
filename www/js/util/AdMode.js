@@ -6,13 +6,17 @@ define(['jquery'], function(){
         this.hideAd = function() {};
 
         this.bannerHeight = function() {
-            var height = $(document).height();
-            if(height <= 400){
-                return 32;
-            } else if (height <= 720) {
-                return 50
+            if(this._bannerHeight) {
+                return this._bannerHeight
+            } else {
+                var height = $(document).height();
+                if(height <= 400){
+                    return this._bannerHeight = 32;
+                } else if (height <= 720) {
+                    return this._bannerHeight = 50
+                }
+                return this._bannerHeight = 90;
             }
-            return 90;
         };
 
         document.addEventListener("deviceready", function() {

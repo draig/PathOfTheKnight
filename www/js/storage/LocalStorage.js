@@ -24,28 +24,6 @@ define([], function(){
             return entity;
         };
 
-        /*this.update = function(field, value, where) {
-            var entity = JSON.parse(window.localStorage.getItem(field));
-            var forUpdate = entity;
-            if(where) {
-                forUpdate = entity.filter(function(element) {
-                    var able = true;
-                    $.each(where, function(condition) {
-                        able = element[condition] === where[condition];
-                    });
-                    return able;
-                });
-            }
-            if(value) {
-                forUpdate.forEach(function(element) {
-                    $.each(value, function(condition) {
-                        element[condition] = value[condition];
-                    });
-                }.bind(this));
-            }
-            this.save(field, entity);
-        };*/
-
         this.insert = function(field, value) {
             if(window.localStorage.getItem(field) === null){
                 this.save(field, value);
@@ -146,6 +124,14 @@ define([], function(){
             this.update('stages', stages);
         };
 
+        this.completeStage = function(stageId) {
+            var stages = JSON.parse(window.localStorage.getItem('stages')),
+                curStage = JSON.parse(stages[stageId]);
+            curStage.complete = true;
+            stages[stageId] = JSON.stringify(curStage);
+            this.update('stages', stages);
+        };
+
         // Used to simulate async calls. This is done to provide a consistent interface with stores (like WebSqlStore)
         // that use async data access APIs
         var callLater = function(callback, data) {
@@ -166,13 +152,13 @@ define([], function(){
         ];
 
         var stages = [
-            {id: 0, levelId: 0, number: 1, horseId: 0, chessTableId: 0, enable: true},
-            {id: 1, levelId: 0, number: 2, horseId: 1, chessTableId: 1, enable: false},
-            {id: 2, levelId: 0, number: 3, horseId: 2, chessTableId: 2, enable: false},
-            {id: 3, levelId: 0, number: 4, horseId: 3, chessTableId: 3, enable: false},
-            {id: 4, levelId: 0, number: 5, horseId: 4, chessTableId: 4, enable: false},
-            {id: 5, levelId: 1, number: 1, horseId: 5, chessTableId: 5, enable: true},
-            {id: 6, levelId: 1, number: 2, horseId: 6, chessTableId: 6, enable: false}
+            {id: 0, levelId: 0, number: 1, horseId: 0, chessTableId: 0, enable: true, complete: false},
+            {id: 1, levelId: 0, number: 2, horseId: 1, chessTableId: 1, enable: false, complete: false},
+            {id: 2, levelId: 0, number: 3, horseId: 2, chessTableId: 2, enable: false, complete: false},
+            {id: 3, levelId: 0, number: 4, horseId: 3, chessTableId: 3, enable: false, complete: false},
+            {id: 4, levelId: 0, number: 5, horseId: 4, chessTableId: 4, enable: false, complete: false},
+            {id: 5, levelId: 1, number: 1, horseId: 5, chessTableId: 5, enable: true, complete: false},
+            {id: 6, levelId: 1, number: 2, horseId: 6, chessTableId: 6, enable: false, complete: false}
         ];
 
         var chessTables = [

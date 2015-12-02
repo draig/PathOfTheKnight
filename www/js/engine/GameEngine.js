@@ -86,22 +86,23 @@ define([
         },
 
         _resizeTable: function() {
-            var stageTable = this.get('stage').get('chessTable'),
-                sizeX = Math.floor(this.get('width') / stageTable.get('sizeX')),
-                sizeY = Math.floor(this.get('height') / stageTable.get('sizeY')),
-                size = sizeX > sizeY ? sizeY : sizeX;
-            this.set('cellSize', size);
-            this.$table.height(size * stageTable.get('sizeY')).width(size * stageTable.get('sizeX'));
+            if(this.get('width') && this.get('height')) {
+                var stageTable = this.get('stage').get('chessTable'),
+                    sizeX = Math.floor(this.get('width') / stageTable.get('sizeX')),
+                    sizeY = Math.floor(this.get('height') / stageTable.get('sizeY')),
+                    size = sizeX > sizeY ? sizeY : sizeX;
+                this.set('cellSize', size);
+                this.$table.height(size * stageTable.get('sizeY')).width(size * stageTable.get('sizeX'));
 
-            if(size !== sizeY){
-                var padding = (Math.floor(this.get('height')) - size * stageTable.get('sizeY')) / 2;
-                this.$el.css({
-                    paddingTop: padding,
-                    paddingBottom: padding
-                });
+                if(size !== sizeY){
+                    var padding = (Math.floor(this.get('height')) - size * stageTable.get('sizeY')) / 2;
+                    this.$el.css({
+                        paddingTop: padding,
+                        paddingBottom: padding
+                    });
+                }
+                this._renderKnight();
             }
-
-            this._renderKnight()
         },
 
         _renderKnight: function() {
@@ -113,6 +114,7 @@ define([
             var horse = this.get('horse');
             setTimeout(function() {
                 this.$knight.offset(chessTable[horse.get('y')][horse.get('x')].offset());
+                this.trigger('gameEngineRendered');
             }.bind(this), 0);
         },
 
@@ -131,10 +133,32 @@ define([
                     }
 
                     horse.set('x', $(this).data('x')).set('y', $(this).data('y'));
-                    scope.$knight.offset($(this).offset());
-                    scope.setActiveCells(scope.get('horse'));
+
+                    var steps = scope._createKnightSteps($(this).offset(), scope.$knight.offset());
+                    scope.set('lock', true);
+                    scope.$knight.animate(steps[0], {
+                        duration: 500
+                    }).animate(steps[1], {
+                        duration: 250,
+                        complete: function () {
+                            scope.setActiveCells(scope.get('horse'));
+                            scope.set('lock', false);
+                        }
+                    });
                 }
             });
+        },
+
+        _createKnightSteps: function (targetOffset, currentOffset) {
+            var steps = [];
+            if(Math.abs(targetOffset.top - currentOffset.top) > Math.abs(targetOffset.left - currentOffset.left)) {
+                steps.push({top: targetOffset.top});
+                steps.push({left: targetOffset.left});
+            } else {
+                steps.push({left: targetOffset.left});
+                steps.push({top: targetOffset.top});
+            }
+            return steps;
         },
 
         setActiveCells: function(cell) {
@@ -195,6 +219,7 @@ define([
                 var complete = this.$table.find('td').not('.disable').length === 1;
                 this.trigger('gameOver', this.score, complete, this.get('stage'));
                 if(complete){
+                    gameService.completeStage(this.get('stage').get('id'));
                     gameService.unlockNextStage(this.get('stage').get('id'));
                 }
             }

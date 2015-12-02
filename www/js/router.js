@@ -37,16 +37,16 @@ define([
         },
 
         settings: function() {
-            $('.app').html(this.settingsView.render().$el);
+            $('.app').empty().html(this.settingsView.render().$el);
         },
 
         menu: function() {
-            $('.app').html(this.menuView.render().$el);
+            $('.app').empty().html(this.menuView.render().$el);
         },
 
         game: function(stageId) {
             app.localStorage.getStage(stageId, function(stageId, cells, horse, levelId) {
-                $('.app').html(this.gameView.render(new Stage ({
+                $('.app').empty().html(this.gameView.render(new Stage ({
                     id: stageId,
                     levelId: levelId,
                     chessTable: new ChessTable({
@@ -60,20 +60,20 @@ define([
         },
 
         info: function() {
-            $('.app').html(this.infoView.render().$el);
+            $('.app').empty().html(this.infoView.render().$el);
         },
 
         level: function() {
-            $('.app').html(this.levelView.render(app.localStorage.getLevels()).$el);
+            $('.app').empty().html(this.levelView.render(app.localStorage.getLevels()).$el);
         },
 
         stage: function(levelId) {
-            $('.app').html(this.stageView.render(app.localStorage.getStages(levelId)).$el);
+            $('.app').empty().html(this.stageView.render(app.localStorage.getStages(levelId)).$el);
         },
 
         defaultPage: function() {
             //Backbone.history.navigate('course-board', {trigger: true});
-            $('.app').html(this.menuView.render().$el);
+            $('.app').empty().html(this.menuView.render().$el);
         }
     });
 
