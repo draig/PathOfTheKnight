@@ -21,6 +21,7 @@ define([
             'menu': 'menu',
             'game/:stageId' : 'game',
             'info': 'info',
+            'info/:stepId': 'info',
             'level/:levelId/stage': 'stage',
             'level': 'level',
             '': 'defaultPage'
@@ -59,8 +60,9 @@ define([
             }.bind(this));
         },
 
-        info: function() {
-            $('.app').empty().html(this.infoView.render().$el);
+        info: function(stepId) {
+            stepId = stepId || '1',
+            $('.app').empty().html(this.infoView.render(stepId).$el);
         },
 
         level: function() {

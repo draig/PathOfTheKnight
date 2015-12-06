@@ -10,7 +10,7 @@
 
 .game-btn-bar{
     position: absolute;
-    bottom: 0;
+    bottom: 50px;
     height: 70px;
     color: #FFEA82;
     left: 0;
@@ -78,8 +78,6 @@
 
 .dialog{
     display: inline-block;
-    width: 100%;
-    max-width: 500px;
     background-color: rgba(0,0,0,0.6);
     color: #FFEA82;
     position: absolute;

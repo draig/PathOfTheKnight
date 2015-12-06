@@ -21,6 +21,7 @@
 }
 
 .stage .stage-img a{
+    position: relative;
     display: inline-block;
     width: 70px;
     height: 70px;
@@ -41,4 +42,16 @@
 
 .stage:first-child, .stage:nth-child(3n + 1) {
     padding-left: 0.5%;
+}
+
+.stage.complete .stage-img a:after {
+    background: url('../img/complete.png');
+    background-size: cover;
+    content: "";
+    width: 32px;
+    height: 32px;
+    top: 50px;
+    left: 50px;
+    position: absolute;
+    display: inline-block;
 }

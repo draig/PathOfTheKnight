@@ -33,6 +33,7 @@ define([
             }
             $('.app').append(this.$el);
             this.$body = this.$el.html(this.bodyTemplate(config || {}));
+            this.$el.find('.game-btn-bar').css('bottom', app.addMode.bannerHeight());
             this.$el.find('.to-stages').prop('href', '#level/' + config.stage.get('levelId') + '/stage');
             this.delegateEvents();
             return this;

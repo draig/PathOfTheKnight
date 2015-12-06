@@ -152,9 +152,9 @@ define([], function(){
         ];
 
         var stages = [
-            {id: 0, levelId: 0, number: 1, horseId: 0, chessTableId: 0, enable: true, complete: false},
+            {id: 0, levelId: 0, number: 1, horseId: 0, chessTableId: 0, enable: true, complete: true},
             {id: 1, levelId: 0, number: 2, horseId: 1, chessTableId: 1, enable: false, complete: false},
-            {id: 2, levelId: 0, number: 3, horseId: 2, chessTableId: 2, enable: false, complete: false},
+            {id: 2, levelId: 0, number: 3, horseId: 2, chessTableId: 2, enable: true, complete: false},
             {id: 3, levelId: 0, number: 4, horseId: 3, chessTableId: 3, enable: false, complete: false},
             {id: 4, levelId: 0, number: 5, horseId: 4, chessTableId: 4, enable: false, complete: false},
             {id: 5, levelId: 1, number: 1, horseId: 5, chessTableId: 5, enable: true, complete: false},
@@ -243,7 +243,7 @@ define([], function(){
         var horses = [
             { id: 0, x: 0, y: 0},
             { id: 1, x: 0, y: 0},
-            { id: 2, x: 0, y: 0},
+            { id: 2, x: 3, y: 3},
             { id: 3, x: 0, y: 0},
             { id: 4, x: 0, y: 0},
             { id: 5, x: 0, y: 0},

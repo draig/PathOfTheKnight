@@ -57,18 +57,22 @@ define([
             if(!this._rendered){
                 this.$el.html(this.template({}));
                 this.timer.setElement(this.$el.find('.game-time'));
+                this.gameEngine.$el.appendTo(this.$el.find('.chess-table-wrapper'));
+                this._rendered = true;
+            }
+
+            if(this.isBannerHeightChange()) {
+                this._bannerHeight = app.addMode.bannerHeight();
                 this.$el.find('.game-btn-bar').css('bottom', app.addMode.bannerHeight());
                 setTimeout(function() {
-                    var height = app.config.height - this.$el.find('.game-btn-bar').height() - app.addMode.bannerHeight()
+                    var height = app.config.height - this.$el.find('.game-btn-bar').height() - app.addMode.bannerHeight();
                     this.gameEngine.set({
                         width: app.config.width,
                         height: height
                     });
                 }.bind(this), 0);
-
-                this.gameEngine.$el.appendTo(this.$el.find('.chess-table-wrapper'));
-                this._rendered = true;
             }
+
             this.setLevel(stage.get('levelId'));
             this.gameEngine.render();
             this.scoreDialog.hide();
@@ -85,6 +89,15 @@ define([
             app.router.bind('route', toogleAds);
 
             return this;
+        },
+
+        isBannerHeightChange: function () {
+            if(this._bannerHeight) {
+                if(this._bannerHeight === app.addMode.bannerHeight()){
+                    return false
+                }
+            }
+            return true;
         },
 
         reset: function() {

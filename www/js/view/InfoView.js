@@ -14,11 +14,19 @@ define([
 
         className: 'kp-menu',
 
-        render: function () {
+        render: function (stepId) {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
             if(!this._rendered){
                 this.$el.html(this.template(app.config));
                 this._rendered = true;
+            }
+            this.$el.find('.step').hide();
+            switch (stepId) {
+                case '1':
+                    this.$el.find('.step-1').show();
+                    break;
+                case '2':
+                    this.$el.find('.step-2').show();
             }
             this.delegateEvents();
             return this;

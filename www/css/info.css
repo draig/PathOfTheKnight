@@ -1,0 +1,36 @@
+.info {
+    position: absolute;
+    top: 75px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.info-btn-bar{
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.info .btn {
+    border: 4px solid #FFEA82;
+    color: #FFEA82;
+    padding: 0 35px;
+    text-decoration: none;
+    font-size: 40px;
+    display: inline-block;
+    line-height: 72px;
+    height: 72px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.info .knight-turn {
+    height: 385px;
+    width: 100%;
+    background: url("../img/info/knightTurn.png") no-repeat center;
+    background-size: contain;
+}

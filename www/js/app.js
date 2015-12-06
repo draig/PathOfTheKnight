@@ -82,6 +82,10 @@ define([
         }, false);
     }
 
+    document.addEventListener("online", function() {
+        AdMode.active(true);
+    }, false);
+
     App.config = {
         width: $('.app').width(),
         height: $('.app').height(),
