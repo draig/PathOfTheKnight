@@ -1,0 +1,14 @@
+
+
+<% if(complete && nextStage){ %> <a class="btn next" href="#game/<%= nextStage.id %>">WIN !</a><% } %>
+<% if(complete && !nextStage){ %> <a class="btn next" href="#level/<%= stage.get('levelId') %>/stage">К уровням</a><% } %>
+
+<div class="game-btn-bar">
+    <img src="img/refresh.png" class="reset">
+
+    <a class="to-stages">
+        <img src="img/menu.png" class="menu">
+    </a>
+
+</div>
+

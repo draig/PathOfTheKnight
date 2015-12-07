@@ -34,3 +34,10 @@
     background: url("../img/info/knightTurn.png") no-repeat center;
     background-size: contain;
 }
+
+.info .game-process {
+    height: 385px;
+    width: 100%;
+    background: url("../img/info/gameProcess.gif") no-repeat center;
+    background-size: contain;
+}

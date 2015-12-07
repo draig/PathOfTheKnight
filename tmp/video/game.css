@@ -1,0 +1,111 @@
+.white-cell{
+    background: #DEBD8A url("../img/white-cell.png") no-repeat;
+    background-size: cover;
+}
+
+.black-cell{
+    background: #472411 url("../img/black-cell.png") no-repeat;
+    background-size: cover;
+}
+
+.game-btn-bar{
+    position: absolute;
+    bottom: 50px;
+    height: 70px;
+    color: #FFEA82;
+    left: 0;
+    right: 0;
+}
+
+.game-btn-bar img {
+    height: 50px;
+    padding: 10px;
+    top: 0;
+    position: absolute;
+}
+
+.game-btn-bar .reset{
+    left: 0;
+}
+
+.game-btn-bar .menu{
+    right: 0;
+}
+
+.game-btn-bar .game-state {
+    padding: 0 70px;
+    height: 100%;
+    text-align: center;
+}
+
+.game-btn-bar .game-state span{
+    font-size: 40px;
+    padding: 13px 0;
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+.game-btn-bar .game-state .game-time {
+    float: right;
+    padding-right: 15px;
+    width: 120px;
+    text-align: right;
+}
+
+.game-btn-bar .game-state .score {
+    float: left;
+    padding-left: 15px;
+}
+
+.knight{
+}
+
+.black-cell.active{
+    background: #472411 url("../img/black-cell-active.png") no-repeat;
+    background-size: cover;
+}
+
+.white-cell.active{
+    background: #DEBD8A url("../img/white-cell-active.png") no-repeat;
+    background-size: cover;
+}
+
+.white-cell.disable, .black-cell.disable {
+    background: transparent none;
+
+}
+
+.dialog{
+    display: inline-block;
+    background-color: rgba(0,0,0,0.6);
+    color: #FFEA82;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+.res-info *{
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 44px;
+}
+
+.res-complete{
+    font-size: 28px;
+}
+
+.restart-btn{
+    float: left;
+}
+
+.menu-btn{
+    float: right;
+}
+
+.scoreDialog .next{
+    margin-top: 231px;
+    display: inline-block;
+}
