@@ -1,11 +1,11 @@
 <div class="res-info">
-    <div class="res-score-label">Your score</div>
-    <div class="res-score"><%= score %></div>
-    <div class="res-complete"><% if(complete){ %>Success<% } else { %>Fail<% } %></div>
+    <div class="res-score-label"><%= nls._score %></div>
+    <div class="res-score"><%= nls.score %></div>
+    <div class="res-complete"><% if(complete){ %><%= nls._success %><% } else { %><%= nls._fail %><% } %></div>
 </div>
 
-<% if(complete && nextStage){ %> <a class="btn next" href="#game/<%= nextStage.id %>">Дальше</a><% } %>
-<% if(complete && !nextStage){ %> <a class="btn next" href="#level/<%= stage.get('levelId') %>/stage">К уровням</a><% } %>
+<% if(complete && nextStage){ %> <a class="btn next" href="#game/<%= nextStage.id %>"><%= nls._next %></a><% } %>
+<% if(complete && !nextStage){ %> <a class="btn next" href="#level/<%= stage.get('levelId') %>/stage"><%= nls._toLevel %></a><% } %>
 
 <div class="game-btn-bar">
     <img src="img/refresh.png" class="reset">

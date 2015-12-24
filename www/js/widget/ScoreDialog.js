@@ -4,8 +4,9 @@ define([
     'backbone',
     'app',
     'text!../../template/widget/dialog.html',
-    'text!../../template/dialog/scoreDialog.html'
-], function($, _, Backbone, app, DialogTpl, ScoreDialogTpl){
+    'text!../../template/dialog/scoreDialog.html',
+    'i18n!nls/scoreDialog'
+], function($, _, Backbone, app, DialogTpl, ScoreDialogTpl, locale){
 
     var ScoreDialog = Backbone.View.extend({
 
@@ -32,7 +33,9 @@ define([
                 this._rendered = true;
             }
             $('.app').append(this.$el);
-            this.$body = this.$el.html(this.bodyTemplate(config || {}));
+            var config = config || {};
+            config.nls = locale;
+            this.$body = this.$el.html(this.bodyTemplate(config));
             this.$el.find('.game-btn-bar').css('bottom', app.addMode.bannerHeight());
             this.$el.find('.to-stages').prop('href', '#level/' + config.stage.get('levelId') + '/stage');
             this.delegateEvents();

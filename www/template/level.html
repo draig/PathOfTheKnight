@@ -1,11 +1,11 @@
 <a href="#menu" class="page-title">
-    Уровень
+    <%= nls._levelTitle %>
 </a>
 <div class="levels">
     <% levels.forEach(function(level) { %>
     <a href="#level/<%= level.id %>/stage" class="level">
         <img src="img/<%= level.img %>">
-        <span><%= level.name %></span>
+        <span><%= nls[level.name] %></span>
     </a>
     <% }); %>
 </div>

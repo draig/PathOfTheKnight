@@ -29,7 +29,6 @@
 }
 
 .info .knight-turn {
-    height: 385px;
     width: 100%;
     background: url("../img/info/knightTurn.png") no-repeat center;
     background-size: contain;

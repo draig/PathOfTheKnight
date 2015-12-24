@@ -42,19 +42,19 @@ define([
             });
             App.audio.setTracks([
                 {
-                    url: '/audio/Adam_Selzer_-_Whistle_And_Action.mp3',
+                    url: 'audio/Adam_Selzer_-_Whistle_And_Action.mp3',
                     author: 'Adam Selzer - Whistle And Action'
                 },
                 {
-                    url: '/audio/Dexter_Britain_-_06_-_Summers_Coming.mp3',
+                    url: 'audio/Dexter_Britain_-_06_-_Summers_Coming.mp3',
                     author: 'DexterBritain - Summers Coming'
                 },
                 {
-                    url: '/audio/Kevin_MacLeod_-_Master_of_the_Feast.mp3',
+                    url: 'audio/Kevin_MacLeod_-_Master_of_the_Feast.mp3',
                     author: 'Kevin MacLeod - Master of the Feast'
                 },
                 {
-                    url: '/audio/Podington_Bear_-_Good_Times.mp3',
+                    url: 'audio/Podington_Bear_-_Good_Times.mp3',
                     author: 'Podington Bear - Good Times'
                 }
 

@@ -103,6 +103,7 @@ define([
         reset: function() {
             this.gameEngine.reset();
             this.scoreDialog.hide();
+            this.$el.find('.score').text(1);
             this.timer.startOver();
         },
 

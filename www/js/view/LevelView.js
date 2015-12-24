@@ -3,8 +3,9 @@ define([
     'underscore',
     'backbone',
     'app',
-    'text!../../template/level.html'
-], function($, _, Backbone, app, LevelTpl){
+    'text!../../template/level.html',
+    'i18n!nls/level'
+], function($, _, Backbone, app, LevelTpl, locale){
 
     var LevelView = Backbone.View.extend({
 
@@ -18,7 +19,7 @@ define([
 
         render: function (levels) {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
-            this.$el.html(this.template({levels: levels}));
+            this.$el.html(this.template({levels: levels, nls: locale}));
             this.delegateEvents();
             return this;
         }

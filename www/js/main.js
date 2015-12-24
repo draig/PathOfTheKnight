@@ -25,11 +25,12 @@ require.config({
  */
 
 require([
+        'i18n',
         'backbone',
         'app',
         'router'
     ],
-    function(Backbone, app, WebRouter) {
+    function(i18n, Backbone, app, WebRouter) {
 
         app.router = new WebRouter();
 

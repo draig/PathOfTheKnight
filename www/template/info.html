@@ -1,19 +1,17 @@
-<a href="#menu" class="page-title">
-    Инфо
-</a>
+<a href="#menu" class="page-title"><%= _infoTitle %></a>
 <div class="info">
     <div class="step step-1">
-        <p>Конь может пойти на любое поле доски если она располагается на другом конце буквы Г, т. е. вначале конь перемещается на два поля по горизонтали или по вертикали, а затем на одну клетку перпендикулярно первоначальному направлению.</p>
+        <p><%= _knightStepInfo %></p>
         <div class="knight-turn"></div>
         <div class="info-btn-bar">
-            <a class="btn" href="#info/2">Далее</a>
+            <a class="btn" href="#info/2"><%= _next %></a>
         </div>
     </div>
     <div class="step step-2">
-        <p>Чтобы пройти раунд необходимо посестить все клетки шахмотной доски. После посещения клетка исчезает.</p>
+        <p><%= _gameRuleInfo %></p>
         <div class="game-process"></div>
         <div class="info-btn-bar">
-            <a class="btn" href="#menu">Закрыть</a>
+            <a class="btn" href="#menu"><%= _close %></a>
         </div>
     </div>
 </div>

@@ -82,6 +82,10 @@ define([], function(){
             });
         };
 
+        this.getLevel = function(levelId) {
+            return JSON.parse(JSON.parse(window.localStorage.getItem('levels'))[levelId]);
+        };
+
         this.getStages = function(levelId) {
             var stages = JSON.parse(window.localStorage.getItem('stages')),
                 levelStages = [];
@@ -152,13 +156,27 @@ define([], function(){
         ];
 
         var stages = [
-            {id: 0, levelId: 0, number: 1, horseId: 0, chessTableId: 0, enable: true, complete: true},
-            {id: 1, levelId: 0, number: 2, horseId: 1, chessTableId: 1, enable: false, complete: false},
+            //classic
+            {id: 0, levelId: 0, number: 1, horseId: 0, chessTableId: 0, enable: true, complete: false},
+            {id: 1, levelId: 0, number: 2, horseId: 1, chessTableId: 1, enable: true, complete: false},
             {id: 2, levelId: 0, number: 3, horseId: 2, chessTableId: 2, enable: true, complete: false},
-            {id: 3, levelId: 0, number: 4, horseId: 3, chessTableId: 3, enable: false, complete: false},
-            {id: 4, levelId: 0, number: 5, horseId: 4, chessTableId: 4, enable: false, complete: false},
-            {id: 5, levelId: 1, number: 1, horseId: 5, chessTableId: 5, enable: true, complete: false},
-            {id: 6, levelId: 1, number: 2, horseId: 6, chessTableId: 6, enable: false, complete: false}
+            {id: 3, levelId: 0, number: 4, horseId: 3, chessTableId: 3, enable: true, complete: false},
+            {id: 4, levelId: 0, number: 5, horseId: 4, chessTableId: 4, enable: true, complete: false},
+            {id: 5, levelId: 0, number: 6, horseId: 5, chessTableId: 5, enable: true, complete: false},
+            {id: 6, levelId: 0, number: 7, horseId: 6, chessTableId: 6, enable: true, complete: false},
+            {id: 7, levelId: 0, number: 8, horseId: 7, chessTableId: 7, enable: true, complete: false},
+            //beginner
+            {id: 8, levelId: 1, number: 1, horseId: 8, chessTableId: 8, enable: true, complete: false},
+            {id: 9, levelId: 1, number: 2, horseId: 9, chessTableId: 9, enable: false, complete: false},
+            {id: 10, levelId: 1, number: 3, horseId: 9, chessTableId: 10, enable: false, complete: false},
+            {id: 11, levelId: 1, number: 4, horseId: 9, chessTableId: 11, enable: false, complete: false},
+            {id: 12, levelId: 1, number: 5, horseId: 9, chessTableId: 12, enable: false, complete: false},
+            {id: 13, levelId: 1, number: 6, horseId: 9, chessTableId: 13, enable: false, complete: false},
+            {id: 14, levelId: 1, number: 7, horseId: 9, chessTableId: 14, enable: false, complete: false},
+            {id: 15, levelId: 1, number: 8, horseId: 9, chessTableId: 15, enable: false, complete: false},
+            {id: 16, levelId: 1, number: 9, horseId: 9, chessTableId: 16, enable: false, complete: false},
+            {id: 17, levelId: 1, number: 10, horseId: 9, chessTableId: 17, enable: false, complete: false},
+            {id: 18, levelId: 1, number: 11, horseId: 9, chessTableId: 18, enable: false, complete: false}
         ];
 
         var chessTables = [
@@ -225,29 +243,174 @@ define([], function(){
             {
                 id: 5,
                 cells:  [
-                    [1, 0, 0],
-                    [0, 0, 1],
-                    [0, 0, 0]
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
                 ]
             },
             {
                 id: 6,
                 cells:  [
-                    [1, 0, 0],
-                    [0, 0, 0],
-                    [0, 1, 0]
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
                 ]
-            }
+            },
+            {
+                id: 7,
+                cells:  [
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+                ]
+            },
+            {
+                id: 8,
+                cells:  [
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 1, 0],
+                    [0, 1, 1, 0, 0],
+                    [1, 0, 1, 0, 1],
+                    [0, 0, 1, 0, 0]
+                ]
+            },
+            {
+                id: 9,
+                cells:  [
+                    [0, 0, 1, 0, 0],
+                    [0, 1, 0, 1, 1],
+                    [0, 1, 1, 1, 0],
+                    [1, 0, 1, 0, 1],
+                    [0, 0, 1, 0, 0]
+                ]
+            },
+            {
+                id: 10,
+                cells:  [
+                    [1, 0, 1, 0, 0],
+                    [1, 0, 1, 0, 0],
+                    [0, 1, 0, 0, 1],
+                    [0, 1, 0, 0, 1],
+                    [0, 0, 1, 1, 0]
+                ]
+            },
+            {
+                id: 11,
+                cells:  [
+                    [0, 0, 0, 1, 0],
+                    [0, 1, 1, 1, 0],
+                    [0, 1, 1, 0, 1],
+                    [0, 0, 1, 1, 1],
+                    [0, 0, 1, 0, 0]
+                ]
+            },
+            {
+                id: 12,
+                cells:  [
+                    [0, 0, 0, 1, 0],
+                    [0, 1, 0, 1, 0],
+                    [0, 1, 1, 1, 0],
+                    [0, 1, 1, 0, 1],
+                    [0, 0, 1, 1, 0]
+                ]
+            },
+            {
+                id: 13,
+                cells:  [
+                    [0, 0, 1, 0, 0],
+                    [0, 1, 0, 1, 1],
+                    [0, 1, 1, 1, 0],
+                    [1, 0, 1, 0, 0],
+                    [0, 0, 1, 0, 0]
+                ]
+            },
+            {
+                id: 14,
+                cells:  [
+                    [0, 0, 1, 1, 0],
+                    [0, 1, 1, 1, 1],
+                    [1, 1, 0, 1, 1],
+                    [1, 0, 1, 1, 0],
+                    [0, 0, 1, 0, 0]
+                ]
+            },
+            {
+                id: 15,
+                cells:  [
+                    [0, 0, 1, 0, 0],
+                    [1, 1, 1, 0, 1],
+                    [0, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 0],
+                    [1, 0, 1, 1, 1]
+                ]
+            },
+            {
+                id: 16,
+                cells:  [
+                    [0, 0, 1, 1, 0],
+                    [1, 1, 1, 1, 1],
+                    [1, 1, 1, 0, 1],
+                    [1, 0, 0, 1, 1],
+                    [0, 1, 1, 0, 0]
+                ]
+            },
+            {
+                id: 17,
+                cells:  [
+                    [1, 1, 1, 1, 1],
+                    [0, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1],
+                    [1, 0, 1, 0, 1],
+                    [0, 1, 1, 0, 1]
+                ]
+            },
         ];
 
         var horses = [
+            //classic
             { id: 0, x: 0, y: 0},
             { id: 1, x: 0, y: 0},
             { id: 2, x: 3, y: 3},
             { id: 3, x: 0, y: 0},
             { id: 4, x: 0, y: 0},
             { id: 5, x: 0, y: 0},
-            { id: 6, x: 0, y: 0}
+            { id: 6, x: 0, y: 0},
+            { id: 7, x: 0, y: 0},
+            //beginner
+            { id: 8, x: 4, y: 3},
+            { id: 9, x: 3, y: 2},
+            { id: 10, x: 0, y: 0},
+            { id: 11, x: 3, y: 1},
+            { id: 12, x: 2, y: 3},
+            { id: 13, x: 1, y: 1},
+            { id: 14, x: 0, y: 2},
+            { id: 15, x: 1, y: 1},
+            { id: 16, x: 2, y: 2},
+            { id: 17, x: 1, y: 2},
         ];
 
         this.insert('volume', true);

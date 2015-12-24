@@ -11,8 +11,6 @@ define([
 
         template: _.template(MenuTpl),
 
-//        initialize: function () {},
-
         className: 'kp-menu',
 
         events: {

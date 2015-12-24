@@ -36,6 +36,7 @@ define([
         startOver: function() {
             this.time = 0;
             clearInterval(this.timerId);
+            this.$el.text(this.startStr);
             this.start();
         },
 

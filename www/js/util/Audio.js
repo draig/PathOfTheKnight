@@ -24,7 +24,7 @@ define(['jquery'], function($) {
 
                 if(track) {
                     if(window.device && device.platform === "Android") {
-                        track.url = '/android_asset/www' + track.url;
+                        track.url = '/android_asset/www/' + track.url;
                      }
                     var audioloop = function(status) {
                         if(!Media.MEDIA_STOPPED || status === Media.MEDIA_STOPPED) {

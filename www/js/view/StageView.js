@@ -3,8 +3,9 @@ define([
     'underscore',
     'backbone',
     'app',
-    'text!../../template/stage.html'
-], function($, _, Backbone, app, LevelTpl){
+    'text!../../template/stage.html',
+    'i18n!nls/level'
+], function($, _, Backbone, app, LevelTpl, locale){
 
     var StageView = Backbone.View.extend({
 
@@ -16,9 +17,11 @@ define([
             'click .kp-back': 'back'
         },
 
-        render: function (stages) {
+        render: function (level, stages) {
             //if(DEBUG) console.log("RENDER::", app.session.user.toJSON(), app.session.toJSON());
-            this.$el.html(this.template({stages: stages}));
+            this.$el.html(this.template({stages: stages, nls: {
+                _stageTitle: locale[level.name]
+            }}));
             this.delegateEvents();
             return this;
         }

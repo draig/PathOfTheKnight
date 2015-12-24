@@ -34,7 +34,7 @@ define([
             this.infoView = new InfoView();
             this.levelView = new LevelView();
             this.stageView = new StageView();
-            this.testView = new TestView();
+            //this.testView = new TestView();
         },
 
         settings: function() {
@@ -70,7 +70,8 @@ define([
         },
 
         stage: function(levelId) {
-            $('.app').empty().html(this.stageView.render(app.localStorage.getStages(levelId)).$el);
+            $('.app').empty().html(this.stageView.render(app.localStorage.getLevel(levelId),
+                app.localStorage.getStages(levelId)).$el);
         },
 
         defaultPage: function() {
